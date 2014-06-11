@@ -3,6 +3,7 @@ import httplib, urllib
 import socket
 import sys
 import pickle
+from pymongo import MongoClient
 
 ADC_PATH = os.path.normpath('/proc/')
 ADC_FILENAME = "adc"
@@ -11,8 +12,10 @@ adcFiles = []
 boardName = 'justins'
 
 #headers = {}
-serverURL = "localhost"
+serverURL = "128.138.201.123"
 serverPort = 10363
+mongoClient = MongoClient(serverURL)
+
 
 
 def delay(ms):
@@ -23,6 +26,7 @@ def setup():
 	for i in range(0,6):
 		adcFiles.append(os.path.join(ADC_PATH, ADC_FILENAME+str(i)))
 	#headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
+
 
 def loop(s):
 	while(1):
