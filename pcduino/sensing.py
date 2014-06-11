@@ -12,7 +12,7 @@ adcFiles = []
 boardName = 'justins'
 
 #headers = {}
-serverURL = "128.138.201.123"
+serverURL = 'mongodb://root:RemoteSensing!7@dbTemp.128.138.201.123:27017/?tag=boardName&temperature=tempN&time=ISOTime'
 serverPort = 10363
 mongoClient = MongoClient(serverURL)
 
