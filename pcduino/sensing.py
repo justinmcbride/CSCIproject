@@ -3,6 +3,7 @@ import httplib, urllib
 import socket
 import sys
 import pickle
+from pcduino import analog_read
 from pymongo import MongoClient
 
 ADC_PATH = os.path.normpath('/proc/')
@@ -11,10 +12,14 @@ adcFiles = []
 
 boardName = 'justins'
 
+tempPinReading = 0
+lightPinReading = 0
+
 #headers = {}
-serverURL = 'mongodb://root:RemoteSensing!7@dbTemp.128.138.201.123:27017/?tag=boardName&temperature=tempN&time=ISOTime'
+serverURL = 'localhost'
+#serverURL = 'mongodb://root:RemoteSensing!7@dbTemp.128.138.201.123:27017/'
 serverPort = 10363
-mongoClient = MongoClient(serverURL)
+#mongoClient = MongoClient(serverURL)
 
 
 
@@ -30,8 +35,8 @@ def setup():
 
 def loop(s):
 	while(1):
-		#updatePinReadings()
-		sendData(s, 15)
+		updatePinReadings()
+		sendData(s, tempPinReading)
 		delay(5000)
 
 '''
@@ -51,12 +56,25 @@ def sendData(s, tempN):
 	packetP = pickle.dumps(packetD)
 	s.send(packetP)
 
+'''
 def updatePinReadings():
+	num = 0
 	for file in adcFiles:
 		fd = open(file, 'r')
 		fd.seek(0)
-		print "ADC Channel: " + str(adcFiles.index(file)) + " Result : " + int(f.read(32).split(':')[1].strip())
+		if num == 2:
+			tempPinReading = int(fd.read(32).split(':')[1].strip())
+		if num == 4:
+			lightPinReading = int(fd.read(32).split(':')[1].strip())
 		fd.close()
+		num = num + 1
+'''
+
+def updatePinReadings():
+	global tempPinReading
+	global lightPinReading
+	tempPinReading = analog_read(2)
+	lightPinReading = analog_read(4)
 
 def main():
 	setup()
