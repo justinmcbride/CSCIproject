@@ -9,9 +9,7 @@ from pymongo import MongoClient
 ADC_PATH = os.path.normpath('/proc/')
 ADC_FILENAME = "adc"
 adcFiles = []
-
 boardName = 'justins'
-
 tempPinReading = 0
 lightPinReading = 0
 
@@ -20,8 +18,6 @@ serverURL = 'localhost'
 #serverURL = 'mongodb://128.138.201.123:27017/'
 serverPort = 10363
 #mongoClient = MongoClient(serverURL)
-
-
 
 def delay(ms):
 	time.sleep(1.0*ms/1000)
@@ -32,43 +28,16 @@ def setup():
 		adcFiles.append(os.path.join(ADC_PATH, ADC_FILENAME+str(i)))
 	#headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
 
-
 def loop(s):
 	while(1):
 		updatePinReadings()
 		sendData(s, tempPinReading)
 		delay(5000)
 
-'''
-def upload(tempN, lightN):
-	postParams = urllib.urlencode({'@boardTag': boardName, '@temperature': tempN, 'light': lightN})
-	conn = httplib.HTTPConnection(serverURL)
-	conn.request("POST", "", postParams, headers)
-	response = conn.getresponse()
-	print response.status, response.reason
-	data = response.read()
-	print data
-	conn.close()
-'''
-
 def sendData(s, tempN):
 	packetD = {'tag' : boardName, 'temperature': tempN }
 	packetP = pickle.dumps(packetD)
 	s.send(packetP)
-
-'''
-def updatePinReadings():
-	num = 0
-	for file in adcFiles:
-		fd = open(file, 'r')
-		fd.seek(0)
-		if num == 2:
-			tempPinReading = int(fd.read(32).split(':')[1].strip())
-		if num == 4:
-			lightPinReading = int(fd.read(32).split(':')[1].strip())
-		fd.close()
-		num = num + 1
-'''
 
 def updatePinReadings():
 	global tempPinReading
