@@ -17,7 +17,7 @@ lightPinReading = 0
 
 #headers = {}
 serverURL = 'localhost'
-#serverURL = 'mongodb://root:RemoteSensing!7@dbTemp.128.138.201.123:27017/'
+#serverURL = 'mongodb://128.138.201.123:27017/'
 serverPort = 10363
 #mongoClient = MongoClient(serverURL)
 
