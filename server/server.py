@@ -1,25 +1,24 @@
-#created using http://www.binarytides.com/python-socket-server-code-example/
-
-import socket
 import sys
 import matplotlib
 matplotlib.use('Agg') #Required to tell the library that we do not have a display
 import matplotlib.pyplot as plt
-import pickle
-from thread import *
+from flask import Flask, request
+from pymongo import MongoClient
+import datetime
 
-HOST = ''
-
+app = Flask(__name__)
 PLOT_OUTPUT = 'program/plot.png'
-
-PORT = 10363
-
 points = []
 
-def clientthread(conn):
-    #sending message to connected client
-    conn.send('Connected to the reporting server')
+mongoClient = MongoClient()
+db = mongoClient.test
 
+post = {"board" : "justin", "temp" : 15, "time" : datetime.datetime.utcnow() }
+
+posts = db.posts
+post_id = posts.insert(post)
+
+def clientthread(conn):
     while True:
         #receiving data from client
         serializedData = conn.recv(2048)
@@ -32,34 +31,21 @@ def clientthread(conn):
 		plt.plot(points)
 		plt.savefig(PLOT_OUTPUT, format="png")
 		plt.clf()
-
     conn.close()
 
-def main():
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    print 'Socket created'
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
 
-    #Bind socket to local host and port
-    try:
-        s.bind((HOST, PORT))
-    except:
-        print 'Bind failed.'
-        sys.exit()
+@app.route('/input', methods=['POST'])
+def input():
+    if (request.method == 'POST'):
+        boardName = request.form['boardName']
+        temperature = request.form['temperature']
+        return "good request"
+    else:
+        return "bad request"
 
-    print 'Socket bind complete'
 
-    #start listening on socket
-    s.listen(10)
-    print 'Socket now listening'
-
-    while 1:
-        #wait to accept a connection
-        conn, addr = s.accept()
-        print 'Connected with ' + addr[0] + ':' + str(addr[1])
-        start_new_thread(clientthread, (conn,))
-
-    s.close()
-
-if __name__ == "__main__":
-    main()
-
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')

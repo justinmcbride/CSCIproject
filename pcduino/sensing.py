@@ -1,19 +1,15 @@
 import time, os
-#import httplib, urllib
-import socket
+import urllib
+import urllib2
 import sys
-import pickle
 from pypcduino import analog_read
-from pymongo import MongoClient
 
 boardName = 'Justin'
 tempPinReading = 0
 lightPinReading = 0
 
-serverURL = 'localhost'
-#serverURL = 'mongodb://128.138.201.123:27017/'
+serverURL = 'http://71.237.88.58/input'
 serverPort = 10363
-#mongoClient = MongoClient(serverURL)
 
 """Put the program to sleep for a specified number
 of seconds
@@ -27,17 +23,15 @@ of its time, looping through indefinitely.
 def loop(s):
 	while(1):
 		updatePinReadings()
-		sendData(s, tempPinReading)
+		sendData(s)
 		delay(5000)
 
-"""Here we actually ship off the information to the server.
-We need to serialize the data to send it effectively (using
-pickle)
-"""
-def sendData(s, tempN):
-	packetD = {'tag' : boardName, 'temperature': tempN }
-	packetP = pickle.dumps(packetD)
-	s.send(packetP)
+"""Here we actually ship off the information to the server."""
+def sendData(s):
+	postParams = { 'boardName' : boardName, 'tempPinReading' : tempPinReading}
+	encodedData = urllib.urlencode(postParams)
+	request = urllib2.Request(serverURL, encodedData)
+	response = urllib2.urlopen(req)
 
 '''This function will read the values reported by the hardware,
 and then save that data to the appropriate sensor's variable
@@ -50,18 +44,6 @@ def updatePinReadings():
 
 '''The entry point of the program'''
 def main():
-	try:
-		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	except:
-		print 'Failed to create a socket.'
-		sys.exit()
-	try:
-		remote_ip = socket.gethostbyname(serverURL)
-	except socket.gaierror:
-		print 'Could not connect to the specified hostname.'
-		sys.exit()
-
-	s.connect((remote_ip, serverPort))
 	loop(s)
 
 if __name__ == "__main__":
