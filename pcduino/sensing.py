@@ -8,8 +8,7 @@ boardName = 'Justin'
 tempPinReading = 0
 lightPinReading = 0
 
-serverURL = 'http://71.237.88.58/input'
-serverPort = 10363
+serverURL = 'http://128.138.201.123/input'
 
 """Put the program to sleep for a specified number
 of seconds
@@ -20,18 +19,18 @@ def delay(ms):
 """This is where the program will spend the majority
 of its time, looping through indefinitely.
 """
-def loop(s):
+def loop():
 	while(1):
 		updatePinReadings()
-		sendData(s)
+		sendData()
 		delay(5000)
 
 """Here we actually ship off the information to the server."""
-def sendData(s):
-	postParams = { 'boardName' : boardName, 'tempPinReading' : tempPinReading}
+def sendData():
+	postParams = { 'boardName' : boardName, 'temperature' : tempPinReading}
 	encodedData = urllib.urlencode(postParams)
 	request = urllib2.Request(serverURL, encodedData)
-	response = urllib2.urlopen(req)
+	response = urllib2.urlopen(request)
 
 '''This function will read the values reported by the hardware,
 and then save that data to the appropriate sensor's variable
@@ -44,7 +43,7 @@ def updatePinReadings():
 
 '''The entry point of the program'''
 def main():
-	loop(s)
+	loop()
 
 if __name__ == "__main__":
 	main()
