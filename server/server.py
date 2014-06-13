@@ -7,44 +7,38 @@ from pymongo import MongoClient
 import datetime
 
 app = Flask(__name__)
-PLOT_OUTPUT = 'program/plot.png'
+PLOT_OUTPUT = 'plot/plot.png'
 points = []
 
 mongoClient = MongoClient()
 db = mongoClient.test
+collection = db.recordings
 
-post = {"board" : "justin", "temp" : 15, "time" : datetime.datetime.utcnow() }
+def createPlot():
+	plt.plot(points)
+	plt.savefig(PLOT_OUTPUT, format="png")
+	plt.clf()
 
-posts = db.posts
-post_id = posts.insert(post)
+def parseInput():
+	boardName = request.form['boardName']
+	temperature = request.form['temperature']
+	points.append(temperature)
+	date = datetime.utcnow()
 
-def clientthread(conn):
-    while True:
-        #receiving data from client
-        serializedData = conn.recv(2048)
-        if not serializedData:
-            break
-        data = pickle.loads(serializedData)
-        print "data[tag] = ", data['tag']
-        print "data[temperature] = ", data['temperature']
-		points.append(data['temperature'])
-		plt.plot(points)
-		plt.savefig(PLOT_OUTPUT, format="png")
-		plt.clf()
-    conn.close()
+	post = {'boardTag' : boardName, 'temperature' : temperature, 'time' : date}
+	collection.insert(post)
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return 'Thou shalt not pass!'
 
 @app.route('/input', methods=['POST'])
 def input():
     if (request.method == 'POST'):
-        boardName = request.form['boardName']
-        temperature = request.form['temperature']
-        return "good request"
+        parseInput()
+        return "Good request!"
     else:
-        return "bad request"
+        return "Bad request.."
 
 
 if __name__ == '__main__':
