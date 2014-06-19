@@ -38,6 +38,51 @@ lastTemperature = 0
 ## A global variable to hold the last reading of the last light brightness measured
 lastLight = 0
 ## This is the location of the REST API and it is where we will send our calls to.
+
+class Sensor:
+	sensorName = ''
+	sensorValue = 0
+	sensorReading = 0
+	sensorPin = 0
+
+	def __init__(self):
+		self.sensorName = 'Invalid Sensor'
+		
+	def getReading(self):
+		self.sensorReading = analog_read(self.sensorPin)
+
+	def adToVoltage(self):
+		voltage = self.sensorReading * 5.0
+	 	voltage /= 1024.0
+	 	self.sensorReading = voltage
+
+	 def getValue(self):
+	 	self.getReading()
+	 	return { self.sensorName : self.sensorValue }
+
+class TemperatureSensor(Sensor):
+	def __init__(self):
+		self.sensorName = 'Temperature'
+		self.sensorPin = 2
+
+	def getReading(self):
+		self.sensorReading = analog_read(self.sensorPin)
+		self.adToVoltage()
+		self.sensorValue = self.voltageToTemperatureC()
+
+	def voltageToTemperatureC(self):
+		self.sensorValue = (self.sensorReading - 0.5) * 100
+
+class LightSensor(Sensor):
+	def __init__(self):
+		self.sensorName = 'Light'
+		self.sensorPin = 4
+
+
+
+availableSensors = []
+
+
 apiURI = 'http://dsp-csci-project.cloud.dreamfactory.com/rest/mongodb/sensordata'
 ## These are the headers that we need to send with our REST API calls
 headers = {'content-type' : 'application/json', 'X-DreamFactory-Application-Name' : 'RemoteSensing'}
@@ -50,14 +95,13 @@ def delay(ms):
 #This is where the program will spend the majority of its time, looping through indefinitely.
 def loop():
 	while(1):
-		updatePinReadings()
-		sendData()
+		sensorData = updatePinReadings()
+		sendData(sensorData)
 		delay(5000)
 
 ##Here we actually ship off the information to the server.
-def sendData():
-	postParams = { 'boardName' : boardName, 'temperature' : tempPinReading}
-
+def sendData(sensorData):
+	response = requests.post(apiURI, data=json.dumps(sensorData), headers=headers)
 	#encodedData = urllib.urlencode(postParams)
 	#request = urllib2.Request(serverURL, encodedData)
 	#response = urllib2.urlopen(request)
@@ -65,22 +109,18 @@ def sendData():
 ##This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable
 
 def updatePinReadings():
-	global tempPinReading
-	global lightPinReading
-	tempPinReading = analog_read(2)
-	lightPinReading = analog_read(4)
-
-def adToVoltage(reading):
-	voltage = reading * 5.0
- 	voltage /= 1024.0
- 	return voltage
+	sensorData = {}
+	for sensor in availableSensors:
+		sensorData.update(sensor.getValue())
+	return sensorData
 
 
-def voltageToTemperatureC(voltage):
-	return (voltage - 0.5) * 100
-
-def tempCtotempF(tempC):
-	return (tempC * 9.0 / 5.0) + 32.0
+def setupSensors():
+	global availableSensors
+	temperatureSensor = TemperatureSensor()
+	availableSensors.append(temperatureSensor)
+	lightSensor = LightSensor()
+	availableSensors.append(lightSensor)
 
 ##The entry point of the program
 def main():
