@@ -62,7 +62,7 @@ class TemperatureSensor():
 	def getReading(self):
 		self.sensorReading = analog_read(self.sensorPin)
 		self.adToVoltage()
-		self.sensorValue = (self.sensorReading - 0.5) * 100
+		self.sensorValue = (self.sensorReading - 0.5) * (100 / 17.43)
 
 	def getValue(self):
 		self.getReading()
