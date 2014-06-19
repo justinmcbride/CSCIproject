@@ -28,10 +28,8 @@ This code requires the external library 'requests'.
 
 from datetime import datetime
 import time
-#import os
 import json
 import requests
-#import sys
 from pypcduino import analog_read
 
 ## A unique board ID to identify the individual board
@@ -40,52 +38,7 @@ boardName = 'Justin'
 lastTemperature = 0
 ## A global variable to hold the last reading of the last light brightness measured
 lastLight = 0
-
-class TemperatureSensor():
-	sensorName = ''
-	sensorValue = 0
-	sensorReading = 0
-	sensorPin = 0
-
-	def __init__(self):
-		self.sensorName = 'Temperature'
-		self.sensorPin = 2
-
-	def getReading(self):
-		self.sensorReading = analog_read(self.sensorPin)
-
-	def adToVoltage(self):
-		voltage = self.sensorReading * 5.0
-		voltage /= 1024.0
-		self.sensorReading = voltage
-
-	def getReading(self):
-		self.sensorReading = analog_read(self.sensorPin)
-		self.adToVoltage()
-		self.sensorValue = (self.sensorReading - 0.5) * (100 / 17.43)
-
-	def getValue(self):
-		self.getReading()
-		return { self.sensorName : self.sensorValue }
-
-class LightSensor():
-	sensorName = ''
-	sensorValue = 0
-	sensorReading = 0
-	sensorPin = 0
-
-	def __init__(self):
-		self.sensorName = 'Light'
-		self.sensorPin = 4
-
-	def getReading(self):
-		self.sensorReading = analog_read(self.sensorPin)
-		self.sensorValue = self.sensorReading
-
-	def getValue(self):
-		self.getReading()
-		return { self.sensorName : self.sensorValue }
-
+## A global list that will hold the various sensors' instances so that we can poll them later
 availableSensors = []
 
 ## This is the location of the REST API and it is where we will send our calls to.
@@ -97,7 +50,7 @@ headers = {'content-type' : 'application/json', 'X-DreamFactory-Application-Name
 def delay(ms):
 	time.sleep(1.0*ms/1000)
 
-## 
+## The Loop
 #This is where the program will spend the majority of its time, looping through indefinitely.
 def loop():
 	while(1):
@@ -105,6 +58,68 @@ def loop():
 		sendData(sensorData)
 		delay(5000)
 
+##Here we actually ship off the information to the server. This function accepts a dictionary input of the data from the sensors, then inserts that dictionary into a different dictionary that wraps it with the board's identity and the time of the data collection.
+def sendData(sensorData):
+	data = {"boardName" : boardName, "sensorData" : sensorData, "date" : datetime.now()}
+	response = requests.post(apiURI, data=json.dumps(data, cls=DateTimeEncoder), headers=headers)
+
+
+##This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable
+def updatePinReadings():
+	sensorData = {}
+	for sensor in availableSensors:
+		sensorData.update(sensor.getValue())
+	return sensorData
+
+##Any sensors that are available will be added to a list that gets polled later for their readings. Any sensor that is not on that specific board should be commented out from this function to prevent garbage values.
+def setupSensors():
+	global availableSensors
+	temperatureSensor = TemperatureSensor()
+	availableSensors.append(temperatureSensor)
+	lightSensor = LightSensor()
+	availableSensors.append(lightSensor)
+
+## The class for a Temperature Sensor
+# It has the functions to get the temperature and parse it
+class TemperatureSensor():
+	# The constructor, which sets the name of the sensor for the server and which pin needs to be polled
+	def __init__(self):
+		self.sensorName = 'Temperature'
+		self.sensorValue = 0
+		self.sensorPin = 2
+		self.sensorReading = 0
+
+	# The reading from the board is not formatted in the correct units, so we first need to find what the millivoltage that the board is reading is.
+	def adToVoltage(self):
+		voltage = self.sensorReading * 5.0
+		voltage /= 1024.0
+		self.sensorReading = voltage
+
+	# This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.
+	def getValue(self):
+		self.sensorReading = analog_read(self.sensorPin)
+		self.adToVoltage()
+		self.sensorValue = (self.sensorReading - 0.5) * (100 / 17.43)
+		return { self.sensorName : self.sensorValue }
+
+## The class for a light sensor
+# Contains all the functions to get data about the light
+class LightSensor():
+	# The constructor
+	def __init__(self):
+		self.sensorName = 'Light'
+		self.sensorReading = 0
+		self.sensorValue = 0
+		self.sensorPin = 4
+
+	# This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.
+	def getValue(self):
+		self.sensorReading = analog_read(self.sensorPin)
+		self.sensorValue = self.sensorReading
+		return { self.sensorName : self.sensorValue }
+
+## This is a class to allow the timestamp to be JSON serializable
+# Without this, the JSON module would complain about the date
 class DateTimeEncoder(json.JSONEncoder):
 	def default(self, obj):
 		if isinstance(obj, datetime):
@@ -113,39 +128,12 @@ class DateTimeEncoder(json.JSONEncoder):
 			encoded_object =json.JSONEncoder.default(self, obj)
 		return encoded_object
 
-##Here we actually ship off the information to the server.
-def sendData(sensorData):
-	data = {"boardName" : boardName, "sensorData" : sensorData, "date" : datetime.now()}
-	print "Data to be sent: "
-	for key, value in data.iteritems():
-		print key, value
-
-	response = requests.post(apiURI, data=json.dumps(data, cls=DateTimeEncoder), headers=headers)
-	print "Response: " + response.text
-	#encodedData = urllib.urlencode(postParams)
-	#request = urllib2.Request(serverURL, encodedData)
-	#response = urllib2.urlopen(request)
-
-##This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable
-
-def updatePinReadings():
-	sensorData = {}
-	for sensor in availableSensors:
-		sensorData.update(sensor.getValue())
-	return sensorData
-
-
-def setupSensors():
-	global availableSensors
-	temperatureSensor = TemperatureSensor()
-	availableSensors.append(temperatureSensor)
-	lightSensor = LightSensor()
-	availableSensors.append(lightSensor)
-
-##The entry point of the program
+##The entry point of the program, where we will make a call to setup the various connected sensors, and then begin looping indefinitely to poll those sensors and upload the collected data.
 def main():
 	setupSensors()
 	loop()
 
 if __name__ == "__main__":
 	main()
+
+
