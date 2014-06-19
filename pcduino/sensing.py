@@ -101,6 +101,7 @@ def loop():
 
 ##Here we actually ship off the information to the server.
 def sendData(sensorData):
+	data = {"boardName" : boardName, "sensorData" : sensorData}
 	response = requests.post(apiURI, data=json.dumps(sensorData), headers=headers)
 	#encodedData = urllib.urlencode(postParams)
 	#request = urllib2.Request(serverURL, encodedData)
