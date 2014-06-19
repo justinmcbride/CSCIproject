@@ -36,7 +36,7 @@ boardName = 'Justin'
 ## A global variable to hold the last reading of the last temperature measured
 lastTemperature = 0
 ## A global variable to hold the last reading of the last light brightness measured
-lightPinReading = 0
+lastLight = 0
 ## This is the location of the REST API and it is where we will send our calls to.
 apiURI = 'http://dsp-csci-project.cloud.dreamfactory.com/rest/mongodb/sensordata'
 ## These are the headers that we need to send with our REST API calls
@@ -69,6 +69,18 @@ def updatePinReadings():
 	global lightPinReading
 	tempPinReading = analog_read(2)
 	lightPinReading = analog_read(4)
+
+def adToVoltage(reading):
+	voltage = reading * 5.0
+ 	voltage /= 1024.0
+ 	return voltage
+
+
+def voltageToTemperatureC(voltage):
+	return (voltage - 0.5) * 100
+
+def tempCtotempF(tempC):
+	return (tempC * 9.0 / 5.0) + 32.0
 
 ##The entry point of the program
 def main():
