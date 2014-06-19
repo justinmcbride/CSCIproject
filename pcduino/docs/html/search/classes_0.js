@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['invalidchannelexception',['InvalidChannelException',['../classpypcduino_1_1pinmap_1_1_invalid_channel_exception.html',1,'pypcduino::pinmap']]]
+  ['datetimeencoder',['DateTimeEncoder',['../classsensing_1_1_date_time_encoder.html',1,'sensing']]]
 ];

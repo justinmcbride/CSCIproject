@@ -85,6 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
@@ -93,6 +94,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_temperature_sensor.html">sensing.TemperatureSensor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class for a Temperature Sensor It has the functions to get the temperature and parse it.  <a href="classsensing_1_1_temperature_sensor.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_light_sensor.html">sensing.LightSensor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class for a light sensor Contains all the functions to get data about the light.  <a href="classsensing_1_1_light_sensor.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_date_time_encoder.html">sensing.DateTimeEncoder</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a class to allow the timestamp to be JSON serializable Without this, the JSON module would complain about the date.  <a href="classsensing_1_1_date_time_encoder.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacesensing"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html">sensing</a></td></tr>
@@ -101,10 +114,10 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a110922c2a80aabf038d162595e137cc4"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a110922c2a80aabf038d162595e137cc4">sensing.delay</a></td></tr>
-<tr class="memdesc:a110922c2a80aabf038d162595e137cc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Put the program to sleep for a specified number of seconds.  <a href="#a110922c2a80aabf038d162595e137cc4">More...</a><br/></td></tr>
+<tr class="memdesc:a110922c2a80aabf038d162595e137cc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Put the program to sleep for a specified number of milliseconds.  <a href="#a110922c2a80aabf038d162595e137cc4">More...</a><br/></td></tr>
 <tr class="separator:a110922c2a80aabf038d162595e137cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc4f85f529614a384ee1d04cd5ff80f3"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#afc4f85f529614a384ee1d04cd5ff80f3">sensing.loop</a></td></tr>
-<tr class="memdesc:afc4f85f529614a384ee1d04cd5ff80f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is where the program will spend the majority of its time, looping through indefinitely.  <a href="#afc4f85f529614a384ee1d04cd5ff80f3">More...</a><br/></td></tr>
+<tr class="memdesc:afc4f85f529614a384ee1d04cd5ff80f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Loop This is where the program will spend the majority of its time, looping through indefinitely.  <a href="#afc4f85f529614a384ee1d04cd5ff80f3">More...</a><br/></td></tr>
 <tr class="separator:afc4f85f529614a384ee1d04cd5ff80f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeae2450fef0f1a9244c1ddc6d96ef4c2"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#aeae2450fef0f1a9244c1ddc6d96ef4c2">sensing.sendData</a></td></tr>
 <tr class="memdesc:aeae2450fef0f1a9244c1ddc6d96ef4c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Here we actually ship off the information to the server.  <a href="#aeae2450fef0f1a9244c1ddc6d96ef4c2">More...</a><br/></td></tr>
@@ -112,8 +125,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a75479ff0f15da4027d590f94160bb43f"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a75479ff0f15da4027d590f94160bb43f">sensing.updatePinReadings</a></td></tr>
 <tr class="memdesc:a75479ff0f15da4027d590f94160bb43f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable.  <a href="#a75479ff0f15da4027d590f94160bb43f">More...</a><br/></td></tr>
 <tr class="separator:a75479ff0f15da4027d590f94160bb43f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b1d400f9ad84146d60ee62f7e82faa0"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a3b1d400f9ad84146d60ee62f7e82faa0">sensing.setupSensors</a></td></tr>
+<tr class="memdesc:a3b1d400f9ad84146d60ee62f7e82faa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Any sensors that are available will be added to a list that gets polled later for their readings.  <a href="#a3b1d400f9ad84146d60ee62f7e82faa0">More...</a><br/></td></tr>
+<tr class="separator:a3b1d400f9ad84146d60ee62f7e82faa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38d7f8a9b27bbcf471a89725a5e78493"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a38d7f8a9b27bbcf471a89725a5e78493">sensing.main</a></td></tr>
-<tr class="memdesc:a38d7f8a9b27bbcf471a89725a5e78493"><td class="mdescLeft">&#160;</td><td class="mdescRight">The entry point of the program.  <a href="#a38d7f8a9b27bbcf471a89725a5e78493">More...</a><br/></td></tr>
+<tr class="memdesc:a38d7f8a9b27bbcf471a89725a5e78493"><td class="mdescLeft">&#160;</td><td class="mdescRight">The entry point of the program, where we will make a call to setup the various connected sensors, and then begin looping indefinitely to poll those sensors and upload the collected data.  <a href="#a38d7f8a9b27bbcf471a89725a5e78493">More...</a><br/></td></tr>
 <tr class="separator:a38d7f8a9b27bbcf471a89725a5e78493"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -121,13 +137,10 @@ Variables</h2></td></tr>
 <tr class="memitem:a7d59d9b021482661d93cbf2120dfa030"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a7d59d9b021482661d93cbf2120dfa030">sensing.boardName</a> = 'Justin'</td></tr>
 <tr class="memdesc:a7d59d9b021482661d93cbf2120dfa030"><td class="mdescLeft">&#160;</td><td class="mdescRight">A unique board ID to identify the individual board.  <a href="#a7d59d9b021482661d93cbf2120dfa030">More...</a><br/></td></tr>
 <tr class="separator:a7d59d9b021482661d93cbf2120dfa030"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a299f408c66c5c07e7eb2392a01472dd7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a299f408c66c5c07e7eb2392a01472dd7">sensing.lastTemperature</a> = 0</td></tr>
-<tr class="memdesc:a299f408c66c5c07e7eb2392a01472dd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">A global variable to hold the last reading of the last temperature measured.  <a href="#a299f408c66c5c07e7eb2392a01472dd7">More...</a><br/></td></tr>
-<tr class="separator:a299f408c66c5c07e7eb2392a01472dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a763e931b762ad2fa2b4cdb6f815ffe00"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a763e931b762ad2fa2b4cdb6f815ffe00">sensing.lightPinReading</a> = 0</td></tr>
-<tr class="memdesc:a763e931b762ad2fa2b4cdb6f815ffe00"><td class="mdescLeft">&#160;</td><td class="mdescRight">A global variable to hold the last reading of the last light brightness measured.  <a href="#a763e931b762ad2fa2b4cdb6f815ffe00">More...</a><br/></td></tr>
-<tr class="separator:a763e931b762ad2fa2b4cdb6f815ffe00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5de0b501e0135c4f0709266d12fa2814"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a5de0b501e0135c4f0709266d12fa2814">sensing.apiURI</a> = 'http://dsp-csci-project.cloud.dreamfactory.com/rest/mongodb/sensordata'</td></tr>
+<tr class="memitem:a46ffa95be1accb04ea0a2c0b89b217c0"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a46ffa95be1accb04ea0a2c0b89b217c0">sensing.availableSensors</a> = []</td></tr>
+<tr class="memdesc:a46ffa95be1accb04ea0a2c0b89b217c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A global list that will hold the various sensors' instances so that we can poll them later.  <a href="#a46ffa95be1accb04ea0a2c0b89b217c0">More...</a><br/></td></tr>
+<tr class="separator:a46ffa95be1accb04ea0a2c0b89b217c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5de0b501e0135c4f0709266d12fa2814"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a5de0b501e0135c4f0709266d12fa2814">sensing.apiURI</a> = 'https://dsp-csci-project.cloud.dreamfactory.com:443/rest/mongodb/sensordata'</td></tr>
 <tr class="memdesc:a5de0b501e0135c4f0709266d12fa2814"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the location of the REST API and it is where we will send our calls to.  <a href="#a5de0b501e0135c4f0709266d12fa2814">More...</a><br/></td></tr>
 <tr class="separator:a5de0b501e0135c4f0709266d12fa2814"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10bdd4ea61df5e84854a462509e3c7d5"><td class="memItemLeft" align="right" valign="top">dictionary&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a10bdd4ea61df5e84854a462509e3c7d5">sensing.headers</a> = {'content-type' : 'application/json', 'X-DreamFactory-Application-Name' : 'RemoteSensing'}</td></tr>
@@ -137,7 +150,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jun 18 2014 18:48:41 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 19 2014 00:39:15 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

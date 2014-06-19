@@ -1,29 +1,38 @@
 \hypertarget{namespacesensing}{\section{sensing Namespace Reference}
 \label{namespacesensing}\index{sensing@{sensing}}
 }
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classsensing_1_1_temperature_sensor}{Temperature\-Sensor}
+\begin{DoxyCompactList}\small\item\em The class for a Temperature Sensor It has the functions to get the temperature and parse it. \end{DoxyCompactList}\item 
+class \hyperlink{classsensing_1_1_light_sensor}{Light\-Sensor}
+\begin{DoxyCompactList}\small\item\em The class for a light sensor Contains all the functions to get data about the light. \end{DoxyCompactList}\item 
+class \hyperlink{classsensing_1_1_date_time_encoder}{Date\-Time\-Encoder}
+\begin{DoxyCompactList}\small\item\em This is a class to allow the timestamp to be J\-S\-O\-N serializable Without this, the J\-S\-O\-N module would complain about the date. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 def \hyperlink{namespacesensing_a110922c2a80aabf038d162595e137cc4}{delay}
-\begin{DoxyCompactList}\small\item\em Put the program to sleep for a specified number of seconds. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Put the program to sleep for a specified number of milliseconds. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_afc4f85f529614a384ee1d04cd5ff80f3}{loop}
-\begin{DoxyCompactList}\small\item\em This is where the program will spend the majority of its time, looping through indefinitely. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The Loop This is where the program will spend the majority of its time, looping through indefinitely. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_aeae2450fef0f1a9244c1ddc6d96ef4c2}{send\-Data}
 \begin{DoxyCompactList}\small\item\em Here we actually ship off the information to the server. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_a75479ff0f15da4027d590f94160bb43f}{update\-Pin\-Readings}
 \begin{DoxyCompactList}\small\item\em This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable. \end{DoxyCompactList}\item 
+def \hyperlink{namespacesensing_a3b1d400f9ad84146d60ee62f7e82faa0}{setup\-Sensors}
+\begin{DoxyCompactList}\small\item\em Any sensors that are available will be added to a list that gets polled later for their readings. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_a38d7f8a9b27bbcf471a89725a5e78493}{main}
-\begin{DoxyCompactList}\small\item\em The entry point of the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The entry point of the program, where we will make a call to setup the various connected sensors, and then begin looping indefinitely to poll those sensors and upload the collected data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 string \hyperlink{namespacesensing_a7d59d9b021482661d93cbf2120dfa030}{board\-Name} = 'Justin'
 \begin{DoxyCompactList}\small\item\em A unique board I\-D to identify the individual board. \end{DoxyCompactList}\item 
-int \hyperlink{namespacesensing_a299f408c66c5c07e7eb2392a01472dd7}{last\-Temperature} = 0
-\begin{DoxyCompactList}\small\item\em A global variable to hold the last reading of the last temperature measured. \end{DoxyCompactList}\item 
-int \hyperlink{namespacesensing_a763e931b762ad2fa2b4cdb6f815ffe00}{light\-Pin\-Reading} = 0
-\begin{DoxyCompactList}\small\item\em A global variable to hold the last reading of the last light brightness measured. \end{DoxyCompactList}\item 
-string \hyperlink{namespacesensing_a5de0b501e0135c4f0709266d12fa2814}{api\-U\-R\-I} = 'http\-://dsp-\/csci-\/project.\-cloud.\-dreamfactory.\-com/rest/mongodb/sensordata'
+list \hyperlink{namespacesensing_a46ffa95be1accb04ea0a2c0b89b217c0}{available\-Sensors} = \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em A global list that will hold the various sensors' instances so that we can poll them later. \end{DoxyCompactList}\item 
+string \hyperlink{namespacesensing_a5de0b501e0135c4f0709266d12fa2814}{api\-U\-R\-I} = 'https\-://dsp-\/csci-\/project.\-cloud.\-dreamfactory.\-com\-:443/rest/mongodb/sensordata'
 \begin{DoxyCompactList}\small\item\em This is the location of the R\-E\-S\-T A\-P\-I and it is where we will send our calls to. \end{DoxyCompactList}\item 
 dictionary \hyperlink{namespacesensing_a10bdd4ea61df5e84854a462509e3c7d5}{headers} = \{'content-\/type' \-: 'application/json', 'X-\/Dream\-Factory-\/Application-\/Name' \-: 'Remote\-Sensing'\}
 \begin{DoxyCompactList}\small\item\em These are the headers that we need to send with our R\-E\-S\-T A\-P\-I calls. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -39,8 +48,13 @@ dictionary \hyperlink{namespacesensing_a10bdd4ea61df5e84854a462509e3c7d5}{header
 )}}\label{namespacesensing_a110922c2a80aabf038d162595e137cc4}
 
 
-Put the program to sleep for a specified number of seconds. 
+Put the program to sleep for a specified number of milliseconds. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em ms} & The number of milliseconds to sleep for \\
+\hline
+\end{DoxyParams}
 \hypertarget{namespacesensing_afc4f85f529614a384ee1d04cd5ff80f3}{\index{sensing@{sensing}!loop@{loop}}
 \index{loop@{loop}!sensing@{sensing}}
 \subsubsection[{loop}]{\setlength{\rightskip}{0pt plus 5cm}def sensing.\-loop (
@@ -50,7 +64,7 @@ Put the program to sleep for a specified number of seconds.
 )}}\label{namespacesensing_afc4f85f529614a384ee1d04cd5ff80f3}
 
 
-This is where the program will spend the majority of its time, looping through indefinitely. 
+The Loop This is where the program will spend the majority of its time, looping through indefinitely. 
 
 \hypertarget{namespacesensing_a38d7f8a9b27bbcf471a89725a5e78493}{\index{sensing@{sensing}!main@{main}}
 \index{main@{main}!sensing@{sensing}}
@@ -61,20 +75,36 @@ This is where the program will spend the majority of its time, looping through i
 )}}\label{namespacesensing_a38d7f8a9b27bbcf471a89725a5e78493}
 
 
-The entry point of the program. 
+The entry point of the program, where we will make a call to setup the various connected sensors, and then begin looping indefinitely to poll those sensors and upload the collected data. 
 
 \hypertarget{namespacesensing_aeae2450fef0f1a9244c1ddc6d96ef4c2}{\index{sensing@{sensing}!send\-Data@{send\-Data}}
 \index{send\-Data@{send\-Data}!sensing@{sensing}}
 \subsubsection[{send\-Data}]{\setlength{\rightskip}{0pt plus 5cm}def sensing.\-send\-Data (
 \begin{DoxyParamCaption}
-{}
+\item[{}]{sensor\-Data}
 \end{DoxyParamCaption}
 )}}\label{namespacesensing_aeae2450fef0f1a9244c1ddc6d96ef4c2}
 
 
 Here we actually ship off the information to the server. 
 
-\hypertarget{namespacesensing_a75479ff0f15da4027d590f94160bb43f}{\index{sensing@{sensing}!update\-Pin\-Readings@{update\-Pin\-Readings}}
+This function accepts a dictionary input of the data from the sensors, then inserts that dictionary into a different dictionary that wraps it with the board's identity and the time of the data collection. 
+\begin{DoxyParams}{Parameters}
+{\em sensor\-Data} & A dictionary of the various sensor types and their values \\
+\hline
+\end{DoxyParams}
+\hypertarget{namespacesensing_a3b1d400f9ad84146d60ee62f7e82faa0}{\index{sensing@{sensing}!setup\-Sensors@{setup\-Sensors}}
+\index{setup\-Sensors@{setup\-Sensors}!sensing@{sensing}}
+\subsubsection[{setup\-Sensors}]{\setlength{\rightskip}{0pt plus 5cm}def sensing.\-setup\-Sensors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespacesensing_a3b1d400f9ad84146d60ee62f7e82faa0}
+
+
+Any sensors that are available will be added to a list that gets polled later for their readings. 
+
+Any sensor that is not on that specific board should be commented out from this function to prevent garbage values. \hypertarget{namespacesensing_a75479ff0f15da4027d590f94160bb43f}{\index{sensing@{sensing}!update\-Pin\-Readings@{update\-Pin\-Readings}}
 \index{update\-Pin\-Readings@{update\-Pin\-Readings}!sensing@{sensing}}
 \subsubsection[{update\-Pin\-Readings}]{\setlength{\rightskip}{0pt plus 5cm}def sensing.\-update\-Pin\-Readings (
 \begin{DoxyParamCaption}
@@ -90,10 +120,17 @@ This function will read the values reported by the hardware, and then save that 
 \subsection{Variable Documentation}
 \hypertarget{namespacesensing_a5de0b501e0135c4f0709266d12fa2814}{\index{sensing@{sensing}!api\-U\-R\-I@{api\-U\-R\-I}}
 \index{api\-U\-R\-I@{api\-U\-R\-I}!sensing@{sensing}}
-\subsubsection[{api\-U\-R\-I}]{\setlength{\rightskip}{0pt plus 5cm}string sensing.\-api\-U\-R\-I = 'http\-://dsp-\/csci-\/project.\-cloud.\-dreamfactory.\-com/rest/mongodb/sensordata'}}\label{namespacesensing_a5de0b501e0135c4f0709266d12fa2814}
+\subsubsection[{api\-U\-R\-I}]{\setlength{\rightskip}{0pt plus 5cm}string sensing.\-api\-U\-R\-I = 'https\-://dsp-\/csci-\/project.\-cloud.\-dreamfactory.\-com\-:443/rest/mongodb/sensordata'}}\label{namespacesensing_a5de0b501e0135c4f0709266d12fa2814}
 
 
 This is the location of the R\-E\-S\-T A\-P\-I and it is where we will send our calls to. 
+
+\hypertarget{namespacesensing_a46ffa95be1accb04ea0a2c0b89b217c0}{\index{sensing@{sensing}!available\-Sensors@{available\-Sensors}}
+\index{available\-Sensors@{available\-Sensors}!sensing@{sensing}}
+\subsubsection[{available\-Sensors}]{\setlength{\rightskip}{0pt plus 5cm}list sensing.\-available\-Sensors = \mbox{[}$\,$\mbox{]}}}\label{namespacesensing_a46ffa95be1accb04ea0a2c0b89b217c0}
+
+
+A global list that will hold the various sensors' instances so that we can poll them later. 
 
 \hypertarget{namespacesensing_a7d59d9b021482661d93cbf2120dfa030}{\index{sensing@{sensing}!board\-Name@{board\-Name}}
 \index{board\-Name@{board\-Name}!sensing@{sensing}}
@@ -108,18 +145,4 @@ A unique board I\-D to identify the individual board.
 
 
 These are the headers that we need to send with our R\-E\-S\-T A\-P\-I calls. 
-
-\hypertarget{namespacesensing_a299f408c66c5c07e7eb2392a01472dd7}{\index{sensing@{sensing}!last\-Temperature@{last\-Temperature}}
-\index{last\-Temperature@{last\-Temperature}!sensing@{sensing}}
-\subsubsection[{last\-Temperature}]{\setlength{\rightskip}{0pt plus 5cm}int sensing.\-last\-Temperature = 0}}\label{namespacesensing_a299f408c66c5c07e7eb2392a01472dd7}
-
-
-A global variable to hold the last reading of the last temperature measured. 
-
-\hypertarget{namespacesensing_a763e931b762ad2fa2b4cdb6f815ffe00}{\index{sensing@{sensing}!light\-Pin\-Reading@{light\-Pin\-Reading}}
-\index{light\-Pin\-Reading@{light\-Pin\-Reading}!sensing@{sensing}}
-\subsubsection[{light\-Pin\-Reading}]{\setlength{\rightskip}{0pt plus 5cm}int sensing.\-light\-Pin\-Reading = 0}}\label{namespacesensing_a763e931b762ad2fa2b4cdb6f815ffe00}
-
-
-A global variable to hold the last reading of the last light brightness measured. 
 

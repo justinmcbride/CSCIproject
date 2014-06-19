@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pinmap',['PinMap',['../classpypcduino_1_1pinmap_1_1_pin_map.html',1,'pypcduino::pinmap']]]
+  ['invalidchannelexception',['InvalidChannelException',['../classpypcduino_1_1pinmap_1_1_invalid_channel_exception.html',1,'pypcduino::pinmap']]]
 ];
