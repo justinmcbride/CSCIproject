@@ -1,21 +1,143 @@
 <!DOCTYPE html>
-<html ng-app="tempApp">
+<html ng-app="sensingApp">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>CSCI 3308 Temperature App</title>
+    <title>CSCI 3308 Remote Sensing App</title>
     <script src="angular.js"></script>
-    <link href="bootstrap.css" rel="stylesheet" />
-    <link href="bootstrap-theme.css" rel="stylesheet" />
-    <script>
-        angular.module("tempApp",[]);
-    </script>
+    <script src="ngmondules/angular-dreamfactory.js"></script>
+    <script src="controlers/sensingTemp.js"></script>
+    <script type="filters/customFilters.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
 </head>
-<body>
+
+<body ng-controller="sensingCtrl">
     <div class="navbar navbar-inverse">
-        <a class="navbar-brand" href="#">CSCI 3308 Temperature App</a>
+        <a class="navbar-brand" href="#">CSCI 3308 Remote Sensing App</a>
     </div>
-    <div class ="col-xs-10">
-        Chart goes here
+    <div class="row panel center-block">
+        <div class="col-xs-6">
+            <a ng-click="selectFormat()" class="btn btn-primary btn-lg">Table</a>
+            <a ng-click="selectFormat()" class="btn btn-primary btn-lg" disabled="disabled">Graph</a> 
+        </div>
+    </div>
+    <div class="row panel center-block">
+        <div class="col-xs-6">
+            <a ng-click="selectFormat()" class="btn btn-default btn-sm">Lil Ardi</a>
+            <a ng-click="selectFormat()" class="btn btn-default btn-sm" disabled="disabled">Lil Brdi</a>
+            <a ng-click="selectFormat()" class="btn btn-default btn-sm" disabled="disabled">Lil Crdi</a>
+            <a ng-click="selectFormat()" class="btn btn-default btn-sm" disabled="disabled">Lil Drdi</a> 
+        </div>
+    </div>
+        <!-- add to tableView.html, show on selectFormat()-->
+    <div class="row col-md-10">
+        <div class="col-md-8 table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sensor Name</th>
+                        <th>Location</th>
+                        <th>Temperature</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>75.2</td>
+                        <td>5:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>68.8</td>
+                        <td>6:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>65.1</td>
+                        <td>7:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>75.2</td>
+                        <td>5:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>68.8</td>
+                        <td>6:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>65.1</td>
+                        <td>7:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>75.2</td>
+                        <td>5:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>68.8</td>
+                        <td>6:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>65.1</td>
+                        <td>7:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>75.2</td>
+                        <td>5:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>68.8</td>
+                        <td>6:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>65.1</td>
+                        <td>7:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>75.2</td>
+                        <td>5:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>68.8</td>
+                        <td>6:00pm</td>
+                    </tr>
+                    <tr>
+                        <td>Lil' Ardi</td>
+                        <td>Justin's House</td>
+                        <td>65.1</td>
+                        <td>7:00pm</td>
+                    </tr>
+                </tbody>
+            </table>
+         </div>
+    </div>
+
     </div>
 </body>
+
 </html>
