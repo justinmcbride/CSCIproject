@@ -66,6 +66,8 @@ def updatePinReadings():
 	sensorData = {}
 	for sensor in availableSensors:
 		sensorData.update(sensor.getValue())
+	print 'Data Readings:'
+	print sensorData
 	return sensorData
 
 ##Any sensors that are available will be added to a list that gets polled later for their readings. Any sensor that is not on that specific board should be commented out from this function to prevent garbage values.
@@ -98,7 +100,7 @@ class TemperatureSensor():
 	def getValue(self):
 		self._sensorReading = analog_read(self._sensorPin)
 		self.adToVoltage()
-		self._sensorValue = (self._sensorReading - 0.5) * (100 / 17.43)
+		self._sensorValue = (self._sensorReading - 0.5) * 100 + 70
 		return { self._sensorName : self._sensorValue }
 
 	## @var _sensorName
