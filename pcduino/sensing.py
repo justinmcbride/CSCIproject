@@ -32,8 +32,8 @@ import json
 import requests
 from pypcduino import analog_read
 
-## A unique board ID to identify the individual board
-boardName = 'Justin'
+## The ID/tag to identify the individual board, passed as a command-line argument.
+boardName = ''
 ## A global list that will hold the various sensors' instances so that we can poll them later
 availableSensors = []
 ## This is the location of the REST API and it is where we will send our calls to.
@@ -91,16 +91,21 @@ class TemperatureSensor():
 	## The reading from the board is not formatted in the correct units, so we first need to find what the millivoltage that the board is reading is.
 	# @param self Needed to access the member variables
 	def adToVoltage(self):
-		voltage = self._sensorReading * 5.0
-		voltage /= 1024.0
+		voltage = self._sensorReading * 3.3
+		voltage /= 4096.0
 		self._sensorReading = voltage
+
+	## We need to convert the millivoltage to an actual temperature
+	# @param self Needed to access the member variables
+	def voltageToCelsius(self):
+		self._sensorValue = (self._sensorReading - 0.5) * 100
 
 	## This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.
 	# @param self Needed to access the member variables
 	def getValue(self):
 		self._sensorReading = analog_read(self._sensorPin)
 		self.adToVoltage()
-		self._sensorValue = (self._sensorReading - 0.5) * 100 + 70
+		self.voltageToCelsius()
 		return { self._sensorName : self._sensorValue }
 
 	## @var _sensorName
@@ -152,11 +157,20 @@ class DateTimeEncoder(json.JSONEncoder):
 		return encoded_object
 
 ##The entry point of the program, where we will make a call to setup the various connected sensors, and then begin looping indefinitely to poll those sensors and upload the collected data.
-def main():
+def main(argv):
+	global boardName
+	try:
+		opts, arg = getopt.getopt(argv, 'n:', ['name='])
+	except getopt.GetoptError:
+		print 'Need to specify valid name of the board with -n'
+		sys.exit(2)
+	for opt, arg in opts:
+		if opt in ('-n', '--name'):
+			boardName = arg
 	setupSensors()
 	loop()
 
 if __name__ == "__main__":
-	main()
+	main(sys.argv[1:])
 
 
