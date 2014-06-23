@@ -82,11 +82,15 @@ def setupSensors():
 # It has the functions to get the temperature and parse it
 class TemperatureSensor():
 	## The constructor, which sets the name of the sensor for the server and which pin needs to be polled
-	def __init__(self):
-		self._sensorName = 'Temperature'
-		self._sensorValue = 0
-		self._sensorPin = 2
-		self._sensorReading = 0
+	def __init__(self, name='Temperature', pin=2):
+		if type(name) is not str:
+			raise SensorNameException()
+		else:
+			self._sensorName = name
+		if pin <= 0 or pin >= 5:
+			raise SensorPinException()
+		else:
+			self._sensorPin = pin
 
 	## The reading from the board is not formatted in the correct units, so we first need to find what the millivoltage that the board is reading is.
 	# @param self Needed to access the member variables
@@ -118,15 +122,26 @@ class TemperatureSensor():
 	## @var _sensorPin
 	# A member variable to distinguish which pin should be polled for this sensor
 
+class SensorPinException(Exception):
+	pass
+class SensorNameException(Exception):
+	pass
+
 ## The class for a light sensor
 # Contains all the functions to get data about the light
 class LightSensor():
 	# The constructor
-	def __init__(self):
-		self._sensorName = 'Light'
+	def __init__(self, name='Light', pin=4):
+		if type(name) is not str:
+			raise SensorNameException()
+		else:
+			self._sensorName = name
+		if pin <= 0 or pin >= 5:
+			raise SensorPinException()
+		else:
+			self._sensorPin = pin
 		self._sensorReading = 0
 		self._sensorValue = 0
-		self._sensorPin = 4
 
 	## This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.
 	# @param self Needed to access the member variables
