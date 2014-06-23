@@ -27,6 +27,7 @@ This code requires the external library 'requests'.
 '''
 
 from datetime import datetime
+import argparse
 import time
 import json
 import requests
@@ -59,7 +60,6 @@ def loop():
 def sendData(sensorData):
 	data = {"boardName" : boardName, "sensorData" : sensorData, "date" : datetime.now()}
 	response = requests.post(apiURI, data=json.dumps(data, cls=DateTimeEncoder), headers=headers)
-
 
 ##This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable
 def updatePinReadings():
@@ -97,15 +97,16 @@ class TemperatureSensor():
 
 	## We need to convert the millivoltage to an actual temperature
 	# @param self Needed to access the member variables
-	def voltageToCelsius(self):
-		self._sensorValue = (self._sensorReading - 0.5) * 100
+	def voltageToTemp(self):
+		celsius = (self._sensorReading - 0.5) * 100
+		self._sensorValue = 9.0 / 5.0 * celsius + 32
 
 	## This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.
 	# @param self Needed to access the member variables
 	def getValue(self):
 		self._sensorReading = analog_read(self._sensorPin)
 		self.adToVoltage()
-		self.voltageToCelsius()
+		self.voltageToTemp()
 		return { self._sensorName : self._sensorValue }
 
 	## @var _sensorName
@@ -157,20 +158,15 @@ class DateTimeEncoder(json.JSONEncoder):
 		return encoded_object
 
 ##The entry point of the program, where we will make a call to setup the various connected sensors, and then begin looping indefinitely to poll those sensors and upload the collected data.
-def main(argv):
+# @param argv Requires a -n or --name command token with the name of the board
+def main():
 	global boardName
-	try:
-		opts, arg = getopt.getopt(argv, 'n:', ['name='])
-	except getopt.GetoptError:
-		print 'Need to specify valid name of the board with -n'
-		sys.exit(2)
-	for opt, arg in opts:
-		if opt in ('-n', '--name'):
-			boardName = arg
+	parser = argparse.ArgumentParser()
+	parser.add_argument('name')
+	args = parser.parse_args()
+	boardName = args.name
 	setupSensors()
 	loop()
 
 if __name__ == "__main__":
-	main(sys.argv[1:])
-
-
+	main()
