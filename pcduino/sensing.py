@@ -51,8 +51,8 @@ def delay(ms):
 #This is where the program will spend the majority of its time, looping through indefinitely.
 def loop():
 	i = 0
-	while(1):
-		i++
+	while 1:
+		i = i + 1
 		updatePinReadings()
 		if i == 5:
 			sensorData = getSensorData()
@@ -90,8 +90,7 @@ def setupSensors():
 
 ## The class for a Temperature Sensor
 # It has the functions to get the temperature and parse it
-class TemperatureSensor():
-
+class TemperatureSensor(object):
 	## The constructor, which sets the name of the sensor for the server and which pin needs to be polled
 	def __init__(self, name='Temperature', pin=2):
 		if type(name) is not str:
@@ -124,7 +123,6 @@ class TemperatureSensor():
 		return total / 5
 
 	## We need to convert the millivoltage to an actual temperature
-	# @param self Needed to access the member variables
 	# @param voltage The voltage to convert
 	# @return Calculated Fahrenheit temperature from the voltage
 	def voltageToTemp(self, voltage):
@@ -142,7 +140,7 @@ class TemperatureSensor():
 	## This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.
 	# @param self Needed to access the member variables
 	def getValue(self):
-		return { self._sensorName : getAverageofReadings() }
+		return {self._sensorName : self.getAverageofReadings()}
 
 	## @var _sensorName
 	# A member variable to distinguish which sensor it is
@@ -152,10 +150,12 @@ class TemperatureSensor():
 	# A member variable to hold the finalized and formatted value of the pin reading
 	## @var _sensorPin
 	# A member variable to distinguish which pin should be polled for this sensor
+	## @var _history
+	# Holds the last few data points to average them out later
 
 ## The class for a light sensor
 # Contains all the functions to get data about the light
-class LightSensor():
+class LightSensor(object):
 	# The constructor
 	def __init__(self, name='Light', pin=4):
 		if type(name) is not str:
@@ -166,24 +166,35 @@ class LightSensor():
 			raise SensorPinException()
 		else:
 			self._sensorPin = pin
-		self._sensorReading = 0
-		self._sensorValue = 0
+		self._history = []
 
 	## This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.
 	# @param self Needed to access the member variables
 	def getValue(self):
-		self._sensorReading = analog_read(self._sensorPin)
-		self._sensorValue = self._sensorReading
-		return { self._sensorName : self._sensorValue }
+		return {self._sensorName : self.getAverageofReadings()}
+
+	## The method that will read fom the pin, convert it to a value, and store that value
+	# @param self Needed to access member variables
+	def update(self):
+		reading = analog_read(self._sensorPin)
+		self._history.append(reading)
+
+	## The sensors are not perfect, so we take 5 readings and average them together before using the value
+	# @param self Needed to access the member variables
+	# @return An average of the last 5 calculated readings
+	def getAverageofReadings(self):
+		total = 0
+		for i in self._history:
+			total += i
+		del self._history[:]
+		return total / 5
 
 	## @var _sensorName
 	# A member variable to distinguish which sensor it is
-	## @var _sensorReading
-	# A member variable to hold the raw ADC reading from the board on the corresponding pi
-	## @var _sensorValue
-	# A member variable to hold the finalized and formatted value of the pin reading
 	## @var _sensorPin
 	# A member variable to distinguish which pin should be polled for this sensor
+	## @var _history
+	# Holds the last few data points to average them out later
 
 ## An exception to get thrown when a sensor was set up with an invalid pin location
 class SensorPinException(Exception):
@@ -204,3 +215,4 @@ def main():
 
 if __name__ == "__main__":
 	main()
+
