@@ -50,24 +50,34 @@ def delay(ms):
 ## The Loop
 #This is where the program will spend the majority of its time, looping through indefinitely.
 def loop():
+	i = 0
 	while(1):
-		sensorData = updatePinReadings()
-		sendData(sensorData)
+		i++
+		updatePinReadings()
+		if i == 5:
+			sensorData = getSensorData()
+			sendData(sensorData)
+			i = 0
 		delay(5000)
 
 ##Here we actually ship off the information to the server. This function accepts a dictionary input of the data from the sensors, then inserts that dictionary into a different dictionary that wraps it with the board's identity and the time of the data collection.
 # @param sensorData A dictionary of the various sensor types and their values
 def sendData(sensorData):
-	data = {"boardName" : boardName, "sensorData" : sensorData, "date" : datetime.now()}
-	response = requests.post(apiURI, data=json.dumps(data, cls=DateTimeEncoder), headers=headers)
+	data = {"boardName" : boardName, "sensorData" : sensorData, "date" : datetime.now().isoformat()}
+	try:
+		response = requests.post(apiURI, data=json.dumps(data), headers=headers)
+	except requests.exceptions.ConnectionError:
+		print "Connection error. Skipping current upload"
 
 ##This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable
 def updatePinReadings():
+	for sensor in availableSensors:
+		sensor.update()
+
+def getSensorData():
 	sensorData = {}
 	for sensor in availableSensors:
 		sensorData.update(sensor.getValue())
-	print 'Data Readings:'
-	print sensorData
 	return sensorData
 
 ##Any sensors that are available will be added to a list that gets polled later for their readings. Any sensor that is not on that specific board should be commented out from this function to prevent garbage values.
@@ -81,6 +91,7 @@ def setupSensors():
 ## The class for a Temperature Sensor
 # It has the functions to get the temperature and parse it
 class TemperatureSensor():
+
 	## The constructor, which sets the name of the sensor for the server and which pin needs to be polled
 	def __init__(self, name='Temperature', pin=2):
 		if type(name) is not str:
@@ -91,27 +102,47 @@ class TemperatureSensor():
 			raise SensorPinException()
 		else:
 			self._sensorPin = pin
+		self._sensorReading = 0
+		self._sensorValue = 0
+		self._history = []
 
 	## The reading from the board is not formatted in the correct units, so we first need to find what the millivoltage that the board is reading is.
 	# @param self Needed to access the member variables
 	def adToVoltage(self):
 		voltage = self._sensorReading * 3.3
 		voltage /= 4096.0
-		self._sensorReading = voltage
+		return voltage
+
+	## The sensors are not perfect, so we take 5 readings and average them together before using the value
+	# @param self Needed to access the member variables
+	# @return An average of the last 5 calculated readings
+	def getAverageofReadings(self):
+		total = 0
+		for i in self._history:
+			total += i
+		del self._history[:]
+		return total / 5
 
 	## We need to convert the millivoltage to an actual temperature
 	# @param self Needed to access the member variables
-	def voltageToTemp(self):
-		celsius = (self._sensorReading - 0.5) * 100
-		self._sensorValue = 9.0 / 5.0 * celsius + 32
+	# @param voltage The voltage to convert
+	# @return Calculated Fahrenheit temperature from the voltage
+	def voltageToTemp(self, voltage):
+		celsius = (voltage - 0.5) * 100
+		return 9.0 / 5.0 * celsius + 32
+
+	## The method that will read fom the pin, convert it to a value, and store that value
+	# @param self Needed to access member variables
+	def update(self):
+		self._sensorReading = analog_read(self._sensorPin)
+		voltage = self.adToVoltage()
+		temp = self.voltageToTemp(voltage)
+		self._history.append(temp)
 
 	## This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.
 	# @param self Needed to access the member variables
 	def getValue(self):
-		self._sensorReading = analog_read(self._sensorPin)
-		self.adToVoltage()
-		self.voltageToTemp()
-		return { self._sensorName : self._sensorValue }
+		return { self._sensorName : getAverageofReadings() }
 
 	## @var _sensorName
 	# A member variable to distinguish which sensor it is
@@ -121,11 +152,6 @@ class TemperatureSensor():
 	# A member variable to hold the finalized and formatted value of the pin reading
 	## @var _sensorPin
 	# A member variable to distinguish which pin should be polled for this sensor
-
-class SensorPinException(Exception):
-	pass
-class SensorNameException(Exception):
-	pass
 
 ## The class for a light sensor
 # Contains all the functions to get data about the light
@@ -159,21 +185,14 @@ class LightSensor():
 	## @var _sensorPin
 	# A member variable to distinguish which pin should be polled for this sensor
 
-## This is a class to allow the timestamp to be JSON serializable
-# Without this, the JSON module would complain about the date
-class DateTimeEncoder(json.JSONEncoder):
-	## The actual function that will be used to serialize the data
-	# @param self Needed to access the member variables
-	# @param obj The actual object that we want to serialize into JSON
-	def default(self, obj):
-		if isinstance(obj, datetime):
-			encoded_object = list(obj.timetuple())[0:6]
-		else:
-			encoded_object =json.JSONEncoder.default(self, obj)
-		return encoded_object
+## An exception to get thrown when a sensor was set up with an invalid pin location
+class SensorPinException(Exception):
+	pass
+## An exception to get thrown when a sensor was set up with an invalid name
+class SensorNameException(Exception):
+	pass
 
 ##The entry point of the program, where we will make a call to setup the various connected sensors, and then begin looping indefinitely to poll those sensors and upload the collected data.
-# @param argv Requires a -n or --name command token with the name of the board
 def main():
 	global boardName
 	parser = argparse.ArgumentParser()
