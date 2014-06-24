@@ -8,8 +8,10 @@ class \hyperlink{classsensing_1_1_temperature_sensor}{sensing.\-Temperature\-Sen
 \begin{DoxyCompactList}\small\item\em The class for a Temperature Sensor It has the functions to get the temperature and parse it. \end{DoxyCompactList}\item 
 class \hyperlink{classsensing_1_1_light_sensor}{sensing.\-Light\-Sensor}
 \begin{DoxyCompactList}\small\item\em The class for a light sensor Contains all the functions to get data about the light. \end{DoxyCompactList}\item 
-class \hyperlink{classsensing_1_1_date_time_encoder}{sensing.\-Date\-Time\-Encoder}
-\begin{DoxyCompactList}\small\item\em This is a class to allow the timestamp to be J\-S\-O\-N serializable Without this, the J\-S\-O\-N module would complain about the date. \end{DoxyCompactList}\end{DoxyCompactItemize}
+class \hyperlink{classsensing_1_1_sensor_pin_exception}{sensing.\-Sensor\-Pin\-Exception}
+\begin{DoxyCompactList}\small\item\em An exception to get thrown when a sensor was set up with an invalid pin location. \end{DoxyCompactList}\item 
+class \hyperlink{classsensing_1_1_sensor_name_exception}{sensing.\-Sensor\-Name\-Exception}
+\begin{DoxyCompactList}\small\item\em An exception to get thrown when a sensor was set up with an invalid name. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -26,6 +28,8 @@ def \hyperlink{namespacesensing_aeae2450fef0f1a9244c1ddc6d96ef4c2}{sensing.\-sen
 \begin{DoxyCompactList}\small\item\em Here we actually ship off the information to the server. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_a75479ff0f15da4027d590f94160bb43f}{sensing.\-update\-Pin\-Readings}
 \begin{DoxyCompactList}\small\item\em This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable. \end{DoxyCompactList}\item 
+def \hyperlink{namespacesensing_af9472a5ce179d5f4cbbc2d02a9dbed14}{sensing.\-get\-Sensor\-Data}
+\begin{DoxyCompactList}\small\item\em This function will retrieve the averaged values from the sensors and format it into a dictionary. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_a3b1d400f9ad84146d60ee62f7e82faa0}{sensing.\-setup\-Sensors}
 \begin{DoxyCompactList}\small\item\em Any sensors that are available will be added to a list that gets polled later for their readings. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_a38d7f8a9b27bbcf471a89725a5e78493}{sensing.\-main}
@@ -33,8 +37,8 @@ def \hyperlink{namespacesensing_a38d7f8a9b27bbcf471a89725a5e78493}{sensing.\-mai
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{namespacesensing_a7d59d9b021482661d93cbf2120dfa030}{sensing.\-board\-Name} = 'Justin'
-\begin{DoxyCompactList}\small\item\em A unique board I\-D to identify the individual board. \end{DoxyCompactList}\item 
+string \hyperlink{namespacesensing_a7d59d9b021482661d93cbf2120dfa030}{sensing.\-board\-Name} = ''
+\begin{DoxyCompactList}\small\item\em The I\-D/tag to identify the individual board, passed as a command-\/line argument. \end{DoxyCompactList}\item 
 list \hyperlink{namespacesensing_a46ffa95be1accb04ea0a2c0b89b217c0}{sensing.\-available\-Sensors} = \mbox{[}$\,$\mbox{]}
 \begin{DoxyCompactList}\small\item\em A global list that will hold the various sensors' instances so that we can poll them later. \end{DoxyCompactList}\item 
 string \hyperlink{namespacesensing_a5de0b501e0135c4f0709266d12fa2814}{sensing.\-api\-U\-R\-I} = 'https\-://dsp-\/csci-\/project.\-cloud.\-dreamfactory.\-com\-:443/rest/mongodb/sensordata'

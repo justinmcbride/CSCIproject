@@ -8,8 +8,10 @@ class \hyperlink{classsensing_1_1_temperature_sensor}{Temperature\-Sensor}
 \begin{DoxyCompactList}\small\item\em The class for a Temperature Sensor It has the functions to get the temperature and parse it. \end{DoxyCompactList}\item 
 class \hyperlink{classsensing_1_1_light_sensor}{Light\-Sensor}
 \begin{DoxyCompactList}\small\item\em The class for a light sensor Contains all the functions to get data about the light. \end{DoxyCompactList}\item 
-class \hyperlink{classsensing_1_1_date_time_encoder}{Date\-Time\-Encoder}
-\begin{DoxyCompactList}\small\item\em This is a class to allow the timestamp to be J\-S\-O\-N serializable Without this, the J\-S\-O\-N module would complain about the date. \end{DoxyCompactList}\end{DoxyCompactItemize}
+class \hyperlink{classsensing_1_1_sensor_pin_exception}{Sensor\-Pin\-Exception}
+\begin{DoxyCompactList}\small\item\em An exception to get thrown when a sensor was set up with an invalid pin location. \end{DoxyCompactList}\item 
+class \hyperlink{classsensing_1_1_sensor_name_exception}{Sensor\-Name\-Exception}
+\begin{DoxyCompactList}\small\item\em An exception to get thrown when a sensor was set up with an invalid name. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -21,6 +23,8 @@ def \hyperlink{namespacesensing_aeae2450fef0f1a9244c1ddc6d96ef4c2}{send\-Data}
 \begin{DoxyCompactList}\small\item\em Here we actually ship off the information to the server. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_a75479ff0f15da4027d590f94160bb43f}{update\-Pin\-Readings}
 \begin{DoxyCompactList}\small\item\em This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable. \end{DoxyCompactList}\item 
+def \hyperlink{namespacesensing_af9472a5ce179d5f4cbbc2d02a9dbed14}{get\-Sensor\-Data}
+\begin{DoxyCompactList}\small\item\em This function will retrieve the averaged values from the sensors and format it into a dictionary. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_a3b1d400f9ad84146d60ee62f7e82faa0}{setup\-Sensors}
 \begin{DoxyCompactList}\small\item\em Any sensors that are available will be added to a list that gets polled later for their readings. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_a38d7f8a9b27bbcf471a89725a5e78493}{main}
@@ -28,8 +32,8 @@ def \hyperlink{namespacesensing_a38d7f8a9b27bbcf471a89725a5e78493}{main}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-string \hyperlink{namespacesensing_a7d59d9b021482661d93cbf2120dfa030}{board\-Name} = 'Justin'
-\begin{DoxyCompactList}\small\item\em A unique board I\-D to identify the individual board. \end{DoxyCompactList}\item 
+string \hyperlink{namespacesensing_a7d59d9b021482661d93cbf2120dfa030}{board\-Name} = ''
+\begin{DoxyCompactList}\small\item\em The I\-D/tag to identify the individual board, passed as a command-\/line argument. \end{DoxyCompactList}\item 
 list \hyperlink{namespacesensing_a46ffa95be1accb04ea0a2c0b89b217c0}{available\-Sensors} = \mbox{[}$\,$\mbox{]}
 \begin{DoxyCompactList}\small\item\em A global list that will hold the various sensors' instances so that we can poll them later. \end{DoxyCompactList}\item 
 string \hyperlink{namespacesensing_a5de0b501e0135c4f0709266d12fa2814}{api\-U\-R\-I} = 'https\-://dsp-\/csci-\/project.\-cloud.\-dreamfactory.\-com\-:443/rest/mongodb/sensordata'
@@ -55,6 +59,20 @@ Put the program to sleep for a specified number of milliseconds.
 {\em ms} & The number of milliseconds to sleep for \\
 \hline
 \end{DoxyParams}
+\hypertarget{namespacesensing_af9472a5ce179d5f4cbbc2d02a9dbed14}{\index{sensing@{sensing}!get\-Sensor\-Data@{get\-Sensor\-Data}}
+\index{get\-Sensor\-Data@{get\-Sensor\-Data}!sensing@{sensing}}
+\subsubsection[{get\-Sensor\-Data}]{\setlength{\rightskip}{0pt plus 5cm}def sensing.\-get\-Sensor\-Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespacesensing_af9472a5ce179d5f4cbbc2d02a9dbed14}
+
+
+This function will retrieve the averaged values from the sensors and format it into a dictionary. 
+
+\begin{DoxyReturn}{Returns}
+A dictionary containing key\-:value pairs of the sensor's name/type and its averaged value 
+\end{DoxyReturn}
 \hypertarget{namespacesensing_afc4f85f529614a384ee1d04cd5ff80f3}{\index{sensing@{sensing}!loop@{loop}}
 \index{loop@{loop}!sensing@{sensing}}
 \subsubsection[{loop}]{\setlength{\rightskip}{0pt plus 5cm}def sensing.\-loop (
@@ -134,10 +152,10 @@ A global list that will hold the various sensors' instances so that we can poll 
 
 \hypertarget{namespacesensing_a7d59d9b021482661d93cbf2120dfa030}{\index{sensing@{sensing}!board\-Name@{board\-Name}}
 \index{board\-Name@{board\-Name}!sensing@{sensing}}
-\subsubsection[{board\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string sensing.\-board\-Name = 'Justin'}}\label{namespacesensing_a7d59d9b021482661d93cbf2120dfa030}
+\subsubsection[{board\-Name}]{\setlength{\rightskip}{0pt plus 5cm}string sensing.\-board\-Name = ''}}\label{namespacesensing_a7d59d9b021482661d93cbf2120dfa030}
 
 
-A unique board I\-D to identify the individual board. 
+The I\-D/tag to identify the individual board, passed as a command-\/line argument. 
 
 \hypertarget{namespacesensing_a10bdd4ea61df5e84854a462509e3c7d5}{\index{sensing@{sensing}!headers@{headers}}
 \index{headers@{headers}!sensing@{sensing}}

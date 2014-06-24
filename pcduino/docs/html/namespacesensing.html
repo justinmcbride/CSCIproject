@@ -98,8 +98,11 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_light_sensor.html">LightSensor</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The class for a light sensor Contains all the functions to get data about the light.  <a href="classsensing_1_1_light_sensor.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_date_time_encoder.html">DateTimeEncoder</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a class to allow the timestamp to be JSON serializable Without this, the JSON module would complain about the date.  <a href="classsensing_1_1_date_time_encoder.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_sensor_pin_exception.html">SensorPinException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An exception to get thrown when a sensor was set up with an invalid pin location.  <a href="classsensing_1_1_sensor_pin_exception.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_sensor_name_exception.html">SensorNameException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An exception to get thrown when a sensor was set up with an invalid name.  <a href="classsensing_1_1_sensor_name_exception.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -116,6 +119,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a75479ff0f15da4027d590f94160bb43f"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a75479ff0f15da4027d590f94160bb43f">updatePinReadings</a></td></tr>
 <tr class="memdesc:a75479ff0f15da4027d590f94160bb43f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable.  <a href="#a75479ff0f15da4027d590f94160bb43f">More...</a><br/></td></tr>
 <tr class="separator:a75479ff0f15da4027d590f94160bb43f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9472a5ce179d5f4cbbc2d02a9dbed14"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#af9472a5ce179d5f4cbbc2d02a9dbed14">getSensorData</a></td></tr>
+<tr class="memdesc:af9472a5ce179d5f4cbbc2d02a9dbed14"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function will retrieve the averaged values from the sensors and format it into a dictionary.  <a href="#af9472a5ce179d5f4cbbc2d02a9dbed14">More...</a><br/></td></tr>
+<tr class="separator:af9472a5ce179d5f4cbbc2d02a9dbed14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b1d400f9ad84146d60ee62f7e82faa0"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a3b1d400f9ad84146d60ee62f7e82faa0">setupSensors</a></td></tr>
 <tr class="memdesc:a3b1d400f9ad84146d60ee62f7e82faa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Any sensors that are available will be added to a list that gets polled later for their readings.  <a href="#a3b1d400f9ad84146d60ee62f7e82faa0">More...</a><br/></td></tr>
 <tr class="separator:a3b1d400f9ad84146d60ee62f7e82faa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,8 +131,8 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a7d59d9b021482661d93cbf2120dfa030"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a7d59d9b021482661d93cbf2120dfa030">boardName</a> = 'Justin'</td></tr>
-<tr class="memdesc:a7d59d9b021482661d93cbf2120dfa030"><td class="mdescLeft">&#160;</td><td class="mdescRight">A unique board ID to identify the individual board.  <a href="#a7d59d9b021482661d93cbf2120dfa030">More...</a><br/></td></tr>
+<tr class="memitem:a7d59d9b021482661d93cbf2120dfa030"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a7d59d9b021482661d93cbf2120dfa030">boardName</a> = ''</td></tr>
+<tr class="memdesc:a7d59d9b021482661d93cbf2120dfa030"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ID/tag to identify the individual board, passed as a command-line argument.  <a href="#a7d59d9b021482661d93cbf2120dfa030">More...</a><br/></td></tr>
 <tr class="separator:a7d59d9b021482661d93cbf2120dfa030"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46ffa95be1accb04ea0a2c0b89b217c0"><td class="memItemLeft" align="right" valign="top">list&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#a46ffa95be1accb04ea0a2c0b89b217c0">availableSensors</a> = []</td></tr>
 <tr class="memdesc:a46ffa95be1accb04ea0a2c0b89b217c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A global list that will hold the various sensors' instances so that we can poll them later.  <a href="#a46ffa95be1accb04ea0a2c0b89b217c0">More...</a><br/></td></tr>
@@ -160,6 +166,24 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="af9472a5ce179d5f4cbbc2d02a9dbed14"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def sensing.getSensorData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function will retrieve the averaged values from the sensors and format it into a dictionary. </p>
+<dl class="section return"><dt>Returns</dt><dd>A dictionary containing key:value pairs of the sensor's name/type and its averaged value </dd></dl>
 
 </div>
 </div>
@@ -291,12 +315,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">string sensing.boardName = 'Justin'</td>
+          <td class="memname">string sensing.boardName = ''</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>A unique board ID to identify the individual board. </p>
+<p>The ID/tag to identify the individual board, passed as a command-line argument. </p>
 
 </div>
 </div>
@@ -317,7 +341,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 19 2014 00:39:15 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 24 2014 17:50:51 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

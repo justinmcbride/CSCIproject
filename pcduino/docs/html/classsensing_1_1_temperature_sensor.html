@@ -97,6 +97,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>The class for a Temperature Sensor It has the functions to get the temperature and parse it.  
  <a href="classsensing_1_1_temperature_sensor.html#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for sensing.TemperatureSensor:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classsensing_1_1_temperature_sensor.png" usemap="#sensing.TemperatureSensor_map" alt=""/>
+  <map id="sensing.TemperatureSensor_map" name="sensing.TemperatureSensor_map">
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -106,6 +114,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aaeb85a07038568c56f0e3543815068d7"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_temperature_sensor.html#aaeb85a07038568c56f0e3543815068d7">adToVoltage</a></td></tr>
 <tr class="memdesc:aaeb85a07038568c56f0e3543815068d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The reading from the board is not formatted in the correct units, so we first need to find what the millivoltage that the board is reading is.  <a href="#aaeb85a07038568c56f0e3543815068d7">More...</a><br/></td></tr>
 <tr class="separator:aaeb85a07038568c56f0e3543815068d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5129c7aa8fabc66c80b645186518ecac"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_temperature_sensor.html#a5129c7aa8fabc66c80b645186518ecac">getAverageofReadings</a></td></tr>
+<tr class="memdesc:a5129c7aa8fabc66c80b645186518ecac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The sensors are not perfect, so we take 5 readings and average them together before using the value.  <a href="#a5129c7aa8fabc66c80b645186518ecac">More...</a><br/></td></tr>
+<tr class="separator:a5129c7aa8fabc66c80b645186518ecac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf6d138cf7d3155597a11b359fa9afe7"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_temperature_sensor.html#aaf6d138cf7d3155597a11b359fa9afe7">voltageToTemp</a></td></tr>
+<tr class="memdesc:aaf6d138cf7d3155597a11b359fa9afe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">We need to convert the millivoltage to an actual temperature.  <a href="#aaf6d138cf7d3155597a11b359fa9afe7">More...</a><br/></td></tr>
+<tr class="separator:aaf6d138cf7d3155597a11b359fa9afe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adce48cedf1d9fdd706c374ec1217bd94"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_temperature_sensor.html#adce48cedf1d9fdd706c374ec1217bd94">update</a></td></tr>
+<tr class="memdesc:adce48cedf1d9fdd706c374ec1217bd94"><td class="mdescLeft">&#160;</td><td class="mdescRight">The method that will read fom the pin, convert it to a value, and store that value.  <a href="#adce48cedf1d9fdd706c374ec1217bd94">More...</a><br/></td></tr>
+<tr class="separator:adce48cedf1d9fdd706c374ec1217bd94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a556e30e17858efbb95521dfafe6ee0cc"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_temperature_sensor.html#a556e30e17858efbb95521dfafe6ee0cc">getValue</a></td></tr>
 <tr class="memdesc:a556e30e17858efbb95521dfafe6ee0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.  <a href="#a556e30e17858efbb95521dfafe6ee0cc">More...</a><br/></td></tr>
 <tr class="separator:a556e30e17858efbb95521dfafe6ee0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,13 +138,36 @@ Public Member Functions</h2></td></tr>
           <td class="memname">def sensing.TemperatureSensor.__init__ </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>self</em></td><td>)</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>name</em> = <code>'Temperature'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>pin</em> = <code>2</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The constructor, which sets the name of the sensor for the server and which pin needs to be polled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Optional. The name of the sensor. Defaults to "Temperature" </td></tr>
+    <tr><td class="paramname">pin</td><td>Optional. The pin that the sensor connects through. Defaults to pin 2 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -147,12 +187,25 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The reading from the board is not formatted in the correct units, so we first need to find what the millivoltage that the board is reading is. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">self</td><td>Needed to access the member variables </td></tr>
-  </table>
-  </dd>
-</dl>
+
+</div>
+</div>
+<a class="anchor" id="a5129c7aa8fabc66c80b645186518ecac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def sensing.TemperatureSensor.getAverageofReadings </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The sensors are not perfect, so we take 5 readings and average them together before using the value. </p>
+<dl class="section return"><dt>Returns</dt><dd>An average of the last 5 calculated readings </dd></dl>
 
 </div>
 </div>
@@ -171,12 +224,60 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns a key-value pair of the sensor's name in addition to the averaged value read. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adce48cedf1d9fdd706c374ec1217bd94"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def sensing.TemperatureSensor.update </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The method that will read fom the pin, convert it to a value, and store that value. </p>
+
+</div>
+</div>
+<a class="anchor" id="aaf6d138cf7d3155597a11b359fa9afe7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def sensing.TemperatureSensor.voltageToTemp </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>voltage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>We need to convert the millivoltage to an actual temperature. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">self</td><td>Needed to access the member variables </td></tr>
+    <tr><td class="paramname">voltage</td><td>The voltage to convert </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Calculated Fahrenheit temperature from the voltage </dd></dl>
 
 </div>
 </div>
@@ -186,7 +287,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 19 2014 00:39:15 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 24 2014 17:50:51 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

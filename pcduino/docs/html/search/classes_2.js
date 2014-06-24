@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lightsensor',['LightSensor',['../classsensing_1_1_light_sensor.html',1,'sensing']]]
+  ['pinmap',['PinMap',['../classpypcduino_1_1pinmap_1_1_pin_map.html',1,'pypcduino::pinmap']]]
 ];

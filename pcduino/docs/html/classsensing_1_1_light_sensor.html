@@ -97,14 +97,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>The class for a light sensor Contains all the functions to get data about the light.  
  <a href="classsensing_1_1_light_sensor.html#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for sensing.LightSensor:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classsensing_1_1_light_sensor.png" usemap="#sensing.LightSensor_map" alt=""/>
+  <map id="sensing.LightSensor_map" name="sensing.LightSensor_map">
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a906bcf76dc955878006f8f72dc9e3105"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_light_sensor.html#a906bcf76dc955878006f8f72dc9e3105">__init__</a></td></tr>
+<tr class="memdesc:a906bcf76dc955878006f8f72dc9e3105"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a906bcf76dc955878006f8f72dc9e3105">More...</a><br/></td></tr>
 <tr class="separator:a906bcf76dc955878006f8f72dc9e3105"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab3cbdaa280ccafb57e62e918940cb89"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_light_sensor.html#aab3cbdaa280ccafb57e62e918940cb89">getValue</a></td></tr>
 <tr class="memdesc:aab3cbdaa280ccafb57e62e918940cb89"><td class="mdescLeft">&#160;</td><td class="mdescRight">This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.  <a href="#aab3cbdaa280ccafb57e62e918940cb89">More...</a><br/></td></tr>
 <tr class="separator:aab3cbdaa280ccafb57e62e918940cb89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add45ebed39d38396dff214a90c6d814a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_light_sensor.html#add45ebed39d38396dff214a90c6d814a">update</a></td></tr>
+<tr class="memdesc:add45ebed39d38396dff214a90c6d814a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The method that will read fom the pin, convert it to a value, and store that values.  <a href="#add45ebed39d38396dff214a90c6d814a">More...</a><br/></td></tr>
+<tr class="separator:add45ebed39d38396dff214a90c6d814a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf57806c085727f8ec922b5baa5c1f3b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_light_sensor.html#aaf57806c085727f8ec922b5baa5c1f3b">getAverageofReadings</a></td></tr>
+<tr class="memdesc:aaf57806c085727f8ec922b5baa5c1f3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The sensors are not perfect, so we take 5 readings and average them together before using the value.  <a href="#aaf57806c085727f8ec922b5baa5c1f3b">More...</a><br/></td></tr>
+<tr class="separator:aaf57806c085727f8ec922b5baa5c1f3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The class for a light sensor Contains all the functions to get data about the light. </p>
@@ -117,15 +132,59 @@ Public Member Functions</h2></td></tr>
           <td class="memname">def sensing.LightSensor.__init__ </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>name</em> = <code>'Light'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>pin</em> = <code>4</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Optional. The name of the sensor. Defaults to "Temperature" </td></tr>
+    <tr><td class="paramname">pin</td><td>Optional. The pin that the sensor connects through. Defaults to pin 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aaf57806c085727f8ec922b5baa5c1f3b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def sensing.LightSensor.getAverageofReadings </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
           <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>The sensors are not perfect, so we take 5 readings and average them together before using the value. </p>
+<dl class="section return"><dt>Returns</dt><dd>An average of the last 5 calculated readings </dd></dl>
+
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="aab3cbdaa280ccafb57e62e918940cb89"></a>
 <div class="memitem">
 <div class="memproto">
@@ -141,12 +200,25 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">self</td><td>Needed to access the member variables </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a key-value pair of the sensor's name in addition to the averaged value read. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="add45ebed39d38396dff214a90c6d814a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def sensing.LightSensor.update </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The method that will read fom the pin, convert it to a value, and store that values. </p>
 
 </div>
 </div>
@@ -156,7 +228,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 19 2014 00:39:15 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 24 2014 17:50:51 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

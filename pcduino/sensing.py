@@ -24,6 +24,21 @@ The server is a Ubuntu instance on Amazon's EC2 infrastructure. The server runs 
 
 \section requirements Requirements to Run
 This code requires the external library 'requests'.
+
+\section testing Testing
+Unit testing is enabled through the python unittest module.
+To run the tests, simply use the terminal command 
+$ python test_sensing.py
+
+\section static Static Analysis
+This code utilizes the pylint module to perform static analysis on the code.
+Simply run
+$ pylint sensing.py 
+to generate a report. A generated pylintrc directive file is included with the code to supress the following error messages:
+- missing-docstring - Doxygen uses a different format than docstrings for documentation.
+*invalid-name* - 
+*mixed-indentation* - 
+*anomalous-backslash-in-string* - Doxygen uses backslashes in the documentation markdown.
 '''
 
 from datetime import datetime
@@ -60,7 +75,7 @@ def loop():
 			i = 0
 		delay(5000)
 
-##Here we actually ship off the information to the server. This function accepts a dictionary input of the data from the sensors, then inserts that dictionary into a different dictionary that wraps it with the board's identity and the time of the data collection.
+## Here we actually ship off the information to the server. This function accepts a dictionary input of the data from the sensors, then inserts that dictionary into a different dictionary that wraps it with the board's identity and the time of the data collection.
 # @param sensorData A dictionary of the various sensor types and their values
 def sendData(sensorData):
 	data = {"boardName" : boardName, "sensorData" : sensorData, "date" : datetime.now().isoformat()}
@@ -69,11 +84,13 @@ def sendData(sensorData):
 	except requests.exceptions.ConnectionError:
 		print "Connection error. Skipping current upload"
 
-##This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable
+## This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable
 def updatePinReadings():
 	for sensor in availableSensors:
 		sensor.update()
 
+## This function will retrieve the averaged values from the sensors and format it into a dictionary
+# @return A dictionary containing key:value pairs of the sensor's name/type and its averaged value
 def getSensorData():
 	sensorData = {}
 	for sensor in availableSensors:
@@ -92,6 +109,8 @@ def setupSensors():
 # It has the functions to get the temperature and parse it
 class TemperatureSensor(object):
 	## The constructor, which sets the name of the sensor for the server and which pin needs to be polled
+	# @param name Optional. The name of the sensor. Defaults to "Temperature"
+	# @param pin Optional. The pin that the sensor connects through. Defaults to pin 2
 	def __init__(self, name='Temperature', pin=2):
 		if type(name) is not str:
 			raise SensorNameException()
@@ -102,18 +121,15 @@ class TemperatureSensor(object):
 		else:
 			self._sensorPin = pin
 		self._sensorReading = 0
-		self._sensorValue = 0
 		self._history = []
 
 	## The reading from the board is not formatted in the correct units, so we first need to find what the millivoltage that the board is reading is.
-	# @param self Needed to access the member variables
 	def adToVoltage(self):
 		voltage = self._sensorReading * 3.3
 		voltage /= 4096.0
 		return voltage
 
 	## The sensors are not perfect, so we take 5 readings and average them together before using the value
-	# @param self Needed to access the member variables
 	# @return An average of the last 5 calculated readings
 	def getAverageofReadings(self):
 		total = 0
@@ -130,7 +146,6 @@ class TemperatureSensor(object):
 		return 9.0 / 5.0 * celsius + 32
 
 	## The method that will read fom the pin, convert it to a value, and store that value
-	# @param self Needed to access member variables
 	def update(self):
 		self._sensorReading = analog_read(self._sensorPin)
 		voltage = self.adToVoltage()
@@ -138,7 +153,7 @@ class TemperatureSensor(object):
 		self._history.append(temp)
 
 	## This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.
-	# @param self Needed to access the member variables
+	# @return Returns a key-value pair of the sensor's name in addition to the averaged value read.
 	def getValue(self):
 		return {self._sensorName : self.getAverageofReadings()}
 
@@ -146,8 +161,6 @@ class TemperatureSensor(object):
 	# A member variable to distinguish which sensor it is
 	## @var _sensorReading
 	# A member variable to hold the raw ADC reading from the board on the corresponding pi
-	## @var _sensorValue
-	# A member variable to hold the finalized and formatted value of the pin reading
 	## @var _sensorPin
 	# A member variable to distinguish which pin should be polled for this sensor
 	## @var _history
@@ -156,7 +169,9 @@ class TemperatureSensor(object):
 ## The class for a light sensor
 # Contains all the functions to get data about the light
 class LightSensor(object):
-	# The constructor
+	## Constructor
+	# @param name Optional. The name of the sensor. Defaults to "Temperature"
+	# @param pin Optional. The pin that the sensor connects through. Defaults to pin 2
 	def __init__(self, name='Light', pin=4):
 		if type(name) is not str:
 			raise SensorNameException()
@@ -169,18 +184,16 @@ class LightSensor(object):
 		self._history = []
 
 	## This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.
-	# @param self Needed to access the member variables
+	# @return Returns a key-value pair of the sensor's name in addition to the averaged value read.
 	def getValue(self):
 		return {self._sensorName : self.getAverageofReadings()}
 
-	## The method that will read fom the pin, convert it to a value, and store that value
-	# @param self Needed to access member variables
+	## The method that will read fom the pin, convert it to a value, and store that values
 	def update(self):
 		reading = analog_read(self._sensorPin)
 		self._history.append(reading)
 
 	## The sensors are not perfect, so we take 5 readings and average them together before using the value
-	# @param self Needed to access the member variables
 	# @return An average of the last 5 calculated readings
 	def getAverageofReadings(self):
 		total = 0
