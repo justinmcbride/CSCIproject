@@ -1,0 +1,35 @@
+    <div class="row panel center-block">
+        <div class="col-xs-6">
+            <a ng-click="selectData()" class="btn btn-primary btn-lg">Table</a>
+            <a ng-click="selectData()" class="btn btn-primary btn-lg" disabled="disabled">Graph</a> 
+        </div>
+    </div>
+    <div class="row panel center-block">
+        <div class="col-xs-6">
+            <a ng-click="selectData()" class="btn btn-default btn-sm">Lil Ardi</a>
+            <a ng-click="selectData()" class="btn btn-default btn-sm" disabled="disabled">Lil Brdi</a>
+            <a ng-click="selectData()" class="btn btn-default btn-sm" disabled="disabled">Lil Crdi</a>
+            <a ng-click="selectData()" class="btn btn-default btn-sm" disabled="disabled">Lil Drdi</a> 
+        </div>
+    </div>
+
+    <div class="well" ng-hide="data.error">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>BoardName</th>
+                    <th>Light Reading</th>
+                    <th>Temperature</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="item in data.record | orderBy:'boardName' | unique:'boardName'">
+                <tr>
+                    <td>{{item.boardName}}</td>
+                    <td>{{item.sensorData.Light}}</td>
+                    <td>{{item.sensorData.Temperature}}</td>
+                    <td>{{item.date}}</td>
+                </tr>
+            </tbody>
+        </table>  
+    </div>
