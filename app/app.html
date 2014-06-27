@@ -8,7 +8,6 @@
     <script>
         angular.module("sensingApp",["customFilters"]);
     </script>
-    <script src="ngmodules/angular-dreamfactory.js"></script>
     <script src="controllers/sensingApp.js"></script>
     <script src="filters/customFilters.js"></script>
     <script src="controllers/dataListControllers.js"></script>
@@ -20,16 +19,14 @@
     </div>
     <!-- error message at failed data binding-->
     <div class="alert alert-danger" ng-show="data.error">
-        Error. The sensor data was not loaded. 
-        <a href="app.html" class="alert-link">Check here to try again</a>
+        Error. The sensor data was not loaded. <a href="app.html" class="alert-link">Check here to try again.</a>
     </div>
     <!-- ng-view /views/chart.html -->
 
     <!-- ng-view /views/table.html -->
     <div class="well" ng-controller="dataListCtrl">
         <a ng-click="selectData()" class="btn btn-default btn-lg">All Records</a>
-        <a ng-repeat="item in data.record | orderBy:'boardName' | unique:'boardName'" ng-click="selectData(item)" class="btn btn-default btn-lg" ng-class="getDeviceClass(item)">
-        {{item}}</a>
+        <a ng-repeat="item in data.record | orderBy:'boardName' | unique:'boardName'" ng-click="selectData(item)" class="btn btn-default btn-lg" ng-class="getDeviceClass(item)">{{item}}</a>
         <br>
         <br>
         <div ng-hide="data.error">
@@ -37,8 +34,8 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>BoardName</th>
-                        <th>Light Reading</th>
+                        <th>Location</th>
+                        <th>Brightness</th>
                         <th>Temperature</th>
                         <th>Time</th>
                     </tr>
@@ -47,8 +44,8 @@
                     <tr>
                         <td class="col-sm-1">{{$index+1}}</td>
                         <td>{{item.boardName}}</td>
-                        <td>{{item.sensorData.Light}}</td>
-                        <td>{{item.sensorData.Temperature}}</td>
+                        <td>{{item.sensorData.Light}}%</td>
+                        <td>{{item.sensorData.Temperature}} &deg;F</td>
                         <td>{{item.date}}</td>
                     </tr>
                 </tbody>
