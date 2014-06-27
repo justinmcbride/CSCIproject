@@ -57,13 +57,13 @@ apiURI = 'https://dsp-csci-project.cloud.dreamfactory.com:443/rest/mongodb/senso
 ## These are the headers that we need to send with our REST API calls
 headers = {'content-type' : 'application/json', 'X-DreamFactory-Application-Name' : 'RemoteSensing'}
 
-##Put the program to sleep for a specified number of milliseconds
+## Put the program to sleep for a specified number of milliseconds
 # @param ms The number of milliseconds to sleep for
 def delay(ms):
 	time.sleep(1.0*ms/1000)
 
 ## The Loop
-#This is where the program will spend the majority of its time, looping through indefinitely.
+# This is where the program will spend the majority of its time, looping through indefinitely.
 def loop():
 	i = 0
 	while 1:
@@ -186,12 +186,18 @@ class LightSensor(object):
 	## This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.
 	# @return Returns a key-value pair of the sensor's name in addition to the averaged value read.
 	def getValue(self):
-		return {self._sensorName : self.getAverageofReadings()}
+		return {self._sensorName : self.brightness(self.getAverageofReadings())}
 
 	## The method that will read fom the pin, convert it to a value, and store that values
 	def update(self):
 		reading = analog_read(self._sensorPin)
 		self._history.append(reading)
+
+	## Because the light sensor does not truly give a readable value, we convert it to  a percentage of 100.
+	# @param value The number between 0 and 4096 to convert to a percentage
+	# @return the brightness
+	def brightness(self, value):
+		return (value / 4096.0) * 100.0
 
 	## The sensors are not perfect, so we take 5 readings and average them together before using the value
 	# @return An average of the last 5 calculated readings
