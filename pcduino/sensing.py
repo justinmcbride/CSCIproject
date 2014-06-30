@@ -211,7 +211,7 @@ class LightSensor(object):
 
 	## Because the light sensor does not truly give a readable value, we convert it to  a percentage of 100.
 	# @param value The number between 0 and 4096 to convert to a percentage
-	# @return the brightness
+	# @return Will return the brightness as a percentage value
 	def brightness(self, value):
 		return (value / 4096.0) * 100.0
 
