@@ -41,8 +41,8 @@
                     <tr>
                         <td class="col-sm-1">{{$index+1}}</td>
                         <td>{{item.boardName}}</td>
-                        <td>{{item.sensorData.Light}}%</td>
-                        <td>{{item.sensorData.Temperature}} &deg;F</td>
+                        <td>{{item.sensorData.Light | number:1}}%</td>
+                        <td>{{item.sensorData.Temperature | number:0}} &deg;F</td>
                         <td>{{item.date | date : 'medium'}}</td>
                     </tr>
                 </tbody>
