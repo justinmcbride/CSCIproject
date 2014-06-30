@@ -12,6 +12,20 @@ class TestSensing(unittest.TestCase):
 		self.assertIsInstance(sensing.LightSensor(), sensing.LightSensor)
 		self.assertRaises(sensing.SensorNameException, sensing.LightSensor, name=10)
 
+	def test_AdToVoltage(self):
+		obj = sensing.TemperatureSensor()
+		obj._sensorReading = 0
+		self.assertEquals(obj.adToVoltage(), 0)
+
+		obj._sensorReading = 4096
+		self.assertEquals(obj.adToVoltage(), 3.3)
+
+		obj._sensorReading = 0
+		self.assertEquals(obj.adToVoltage(), 0)
+
+		obj._sensorReading = 0
+		self.assertEquals(obj.adToVoltage(), 0)
+
 	def test_TempSensor(self):
 		self.assertRaises(sensing.SensorPinException, sensing.TemperatureSensor, pin=6)
 		self.assertRaises(sensing.SensorPinException, sensing.TemperatureSensor, pin=-1)

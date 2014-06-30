@@ -39,6 +39,10 @@ to generate a report. A generated pylintrc directive file is included with the c
 *invalid-name* - 
 *mixed-indentation* - 
 *anomalous-backslash-in-string* - Doxygen uses backslashes in the documentation markdown.
+
+\section documents Documentation
+The documentation for this code was created with the help of Doxygen. Because Doxygen does not natively (completely) support Python, the use of 
+Doxypy from http://code.foosel.org/doxypy is used as an input filter.
 '''
 
 from datetime import datetime
@@ -153,8 +157,11 @@ class TemperatureSensor(object):
 		return 9.0 / 5.0 * celsius + 32
 
 	## The method that will read fom the pin, convert it to a value, and store that value
+	# @exception PinReadOutofRangeException Will be thrown when the reading we get is out of the acceptable range
 	def update(self):
 		self._sensorReading = analog_read(self._sensorPin)
+		if self._sensorReading > 4096 or self._sensorReading < 0:
+			raise PinReadOutOfRangeException
 		voltage = self.adToVoltage()
 		temp = self.voltageToTemp(voltage)
 		self._history.append(temp)
@@ -198,6 +205,8 @@ class LightSensor(object):
 	## The method that will read fom the pin, convert it to a value, and store that values
 	def update(self):
 		reading = analog_read(self._sensorPin)
+		if reading > 4096 or reading < 0:
+			raise PinReadOutOfRangeException
 		self._history.append(reading)
 
 	## Because the light sensor does not truly give a readable value, we convert it to  a percentage of 100.
@@ -232,8 +241,11 @@ class SensorPinException(Exception):
 ## An exception to get thrown when a sensor was set up with an invalid name
 class SensorNameException(Exception):
 	pass
-
+## An exception that would be raised when a sensor's history list is empty
 class NoHistoryException(Exception):
+	pass
+## An exception that should occur when a pin reads out of range (0-4096)
+class PinReadOutOfRangeException(Exception):
 	pass
 
 ##The entry point of the program, where we will make a call to setup the various connected sensors, and then begin looping indefinitely to poll those sensors and upload the collected data.
