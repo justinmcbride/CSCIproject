@@ -77,13 +77,15 @@ def loop():
 
 ## Here we actually ship off the information to the server. This function accepts a dictionary input of the data from the sensors, then inserts that dictionary into a different dictionary that wraps it with the board's identity and the time of the data collection.
 # @param sensorData A dictionary of the various sensor types and their values
+# @return Returns true on successful upload, and false otherwise
 def sendData(sensorData):
 	data = {"boardName" : boardName, "sensorData" : sensorData, "date" : datetime.now().isoformat()}
 	try:
 		response = requests.post(apiURI, data=json.dumps(data), headers=headers)
-		print response
+		return True
 	except requests.exceptions.ConnectionError:
 		print "Connection error. Skipping current upload"
+		return False
 
 ## This function will read the values reported by the hardware, and then save that data to the appropriate sensor's variable
 def updatePinReadings():

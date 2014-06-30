@@ -37,13 +37,19 @@ class TestSensing(unittest.TestCase):
 		self.assertEquals(obj.getAverageofReadings(), 4)
 
 	def test_getAverageTemp(self):
-		obj = sensing.TempSensor()
+		obj = sensing.TemperatureSensor()
 		obj._history  = [1, 2, 3, 4, 5]
 		self.assertEquals(obj.getAverageofReadings(), 3)
 		obj._history  = []
 		self.assertRaises(sensing.NoHistoryException, obj.getAverageofReadings)
 		obj._history  = [1, 2, 3, 4, 5, 6, 7]
 		self.assertEquals(obj.getAverageofReadings(), 4)
+
+	def test_dataUpload(self):
+		sensing.ApiURI = "https://dsp-csci-project.cloud.dreamfactory.com:443/rest/mongodb/test"
+		data = {"test" : "object"}
+		self.assertTrue(sensing.sendData(data))
+
 
 if __name__ == '__main__':
 	unittest.main()
