@@ -81,6 +81,7 @@ def sendData(sensorData):
 	data = {"boardName" : boardName, "sensorData" : sensorData, "date" : datetime.now().isoformat()}
 	try:
 		response = requests.post(apiURI, data=json.dumps(data), headers=headers)
+		print response
 	except requests.exceptions.ConnectionError:
 		print "Connection error. Skipping current upload"
 
@@ -133,10 +134,14 @@ class TemperatureSensor(object):
 	# @return An average of the last 5 calculated readings
 	def getAverageofReadings(self):
 		total = 0
+		count = 0
 		for i in self._history:
 			total += i
+			count = count + 1
 		del self._history[:]
-		return total / 5
+		if count == 0:
+			raise NoHistoryException
+		return total / count
 
 	## We need to convert the millivoltage to an actual temperature
 	# @param voltage The voltage to convert
@@ -203,10 +208,14 @@ class LightSensor(object):
 	# @return An average of the last 5 calculated readings
 	def getAverageofReadings(self):
 		total = 0
+		count = 0
 		for i in self._history:
 			total += i
+			count = count + 1
 		del self._history[:]
-		return total / 5
+		if count == 0:
+			raise NoHistoryException
+		return total / count
 
 	## @var _sensorName
 	# A member variable to distinguish which sensor it is
@@ -220,6 +229,9 @@ class SensorPinException(Exception):
 	pass
 ## An exception to get thrown when a sensor was set up with an invalid name
 class SensorNameException(Exception):
+	pass
+
+class NoHistoryException(Exception):
 	pass
 
 ##The entry point of the program, where we will make a call to setup the various connected sensors, and then begin looping indefinitely to poll those sensors and upload the collected data.

@@ -19,5 +19,31 @@ class TestSensing(unittest.TestCase):
 		self.assertIsInstance(sensing.TemperatureSensor(), sensing.TemperatureSensor)
 		self.assertRaises(sensing.SensorNameException, sensing.TemperatureSensor, name=10)
 
+	def test_Brightness(self):
+		obj = sensing.LightSensor()
+		self.assertEquals(obj.brightness(4096), 100.0)
+		self.assertEquals(obj.brightness(0), 0.0)
+		self.assertEquals(obj.brightness(3245), 79.2236328125)
+		self.assertEquals(obj.brightness(-1), -0.0244140625)
+		self.assertEquals(obj.brightness(4097), 100.0244140625)
+
+	def test_getAverageLight(self):
+		obj = sensing.LightSensor()
+		obj._history  = [1, 2, 3, 4, 5]
+		self.assertEquals(obj.getAverageofReadings(), 3)
+		obj._history  = []
+		self.assertRaises(sensing.NoHistoryException, obj.getAverageofReadings)
+		obj._history  = [1, 2, 3, 4, 5, 6, 7]
+		self.assertEquals(obj.getAverageofReadings(), 4)
+
+	def test_getAverageTemp(self):
+		obj = sensing.TempSensor()
+		obj._history  = [1, 2, 3, 4, 5]
+		self.assertEquals(obj.getAverageofReadings(), 3)
+		obj._history  = []
+		self.assertRaises(sensing.NoHistoryException, obj.getAverageofReadings)
+		obj._history  = [1, 2, 3, 4, 5, 6, 7]
+		self.assertEquals(obj.getAverageofReadings(), 4)
+
 if __name__ == '__main__':
 	unittest.main()
