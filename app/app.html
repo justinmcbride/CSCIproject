@@ -2,12 +2,17 @@
 <html ng-app="sensingApp">
 <head lang="en">
     <title>CSCI 3308 Remote Sensing App</title>
-    <script src="js/angular.js"></script>
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/kendo.all.min.js"></script>
+    <script src="js/angular-kendo.min.js"></script>
+
     <script src="controllers/sensingApp.js"></script>
     <script src="filters/customFilters.js"></script>
     <script src="controllers/dataListControllers.js"></script>
+
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
 </head>
 
 <body ng-controller="sensingCtrl">
@@ -19,11 +24,14 @@
         Error. The sensor data was not loaded. <a href="app.html" class="alert-link">Check here to try again.</a>
     </div>
     <!-- ng-view /views/chart.html -->
+    
+    <div class="border" kendo-chart k-options="chart" k-rebind="chart"></div>
+    <br>
 
     <!-- ng-view /views/table.html -->
     <div class="well" ng-controller="dataListCtrl">
         <a ng-click="selectData()" class="btn btn-default btn-lg">All Records</a>
-        <a ng-repeat="item in data.record | orderBy:'boardName' | unique:'boardName'" ng-click="selectData(item)" class="btn btn-default btn-lg" ng-class="getDeviceClass(item)">{{item}}</a>
+        <a ng-repeat="item in data | orderBy:'boardName' | unique:'boardName'" ng-click="selectData(item)" class="btn btn-default btn-lg" ng-class="getDeviceClass(item)">{{item}}</a>
         <br>
         <br>
         <div ng-hide="data.error">
@@ -37,13 +45,13 @@
                         <th>Time</th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="item in data.record | orderBy:'boardName' | filter:deviceFilterFn">
+                <tbody ng-repeat="item in data | orderBy:'boardName' | filter:deviceFilterFn">
                     <tr>
                         <td class="col-sm-1">{{$index+1}}</td>
                         <td>{{item.boardName}}</td>
-                        <td>{{item.sensorData.Light}}%</td>
-                        <td>{{item.sensorData.Temperature}} &deg;F</td>
-                        <td>{{item.date}}</td>
+                        <td>{{item.sensorData.Light | number:1}}%</td>
+                        <td>{{item.sensorData.Temperature | number:0}} &deg;F</td>
+                        <td>{{item.date | date : 'medium'}}</td>
                     </tr>
                 </tbody>
             </table>  
