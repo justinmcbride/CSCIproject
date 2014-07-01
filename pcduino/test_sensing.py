@@ -59,6 +59,24 @@ class TestSensing(unittest.TestCase):
 		obj._history  = [1, 2, 3, 4, 5, 6, 7]
 		self.assertEquals(obj.getAverageofReadings(), 4)
 
+	def test_setupSensors(self):
+		sensing.setupSensors()
+		self.assertEquals(len(sensing.availableSensors), 2)
+
+	def test_TempValues(self):
+		obj = sensing.TemperatureSensor()
+		self.assertRaises(sensing.NoHistoryException, obj.getValue)
+		obj._history  = [1, 2, 3, 4, 5]
+		result = obj.getValue()
+		self.assertEquals(result, {"Temperature" : 3})
+
+	def test_LightValues(self):
+		obj = sensing.LightSensor()
+		self.assertRaises(sensing.NoHistoryException, obj.getValue)
+		obj._history  = [1, 2, 3, 4, 5]
+		result = obj.getValue()
+		self.assertEquals(result, {"Light" : 0.0732421875})
+
 	def test_dataUpload(self):
 		sensing.ApiURI = "https://dsp-csci-project.cloud.dreamfactory.com:443/rest/mongodb/test"
 		data = {"test" : "object"}
