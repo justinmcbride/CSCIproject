@@ -20,11 +20,11 @@ class TestSensing(unittest.TestCase):
 		obj._sensorReading = 4096
 		self.assertEquals(obj.adToVoltage(), 3.3)
 
-		obj._sensorReading = 0
-		self.assertEquals(obj.adToVoltage(), 0)
+		obj._sensorReading = 2543
+		self.assertEquals(obj.adToVoltage(), 2.0488037109375)
 
-		obj._sensorReading = 0
-		self.assertEquals(obj.adToVoltage(), 0)
+		obj._sensorReading = 1
+		self.assertEquals(obj.adToVoltage(), 0.0008056640625)
 
 	def test_TempSensor(self):
 		self.assertRaises(sensing.SensorPinException, sensing.TemperatureSensor, pin=6)
