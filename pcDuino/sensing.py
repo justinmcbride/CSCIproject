@@ -60,6 +60,7 @@ import time
 import json
 import requests
 from pypcduino import analog_read
+from pcpcduino import InvalidChannelException
 
 ## The ID/tag to identify the individual board, passed as a command-line argument.
 boardName = ''
@@ -117,8 +118,13 @@ def getSensorData():
 def setupSensors():
 	global availableSensors
 	temperatureSensor = TemperatureSensor()
-	availableSensors.append(temperatureSensor)
 	lightSensor = LightSensor()
+	try:
+		temperatureSensor.update()
+		lightSensor.update()
+	except InvalidChannelException:
+		raise NoPinFilesException()
+	availableSensors.append(temperatureSensor)
 	availableSensors.append(lightSensor)
 
 ## The class for a Temperature Sensor
@@ -255,6 +261,10 @@ class NoHistoryException(Exception):
 	pass
 ## An exception that should occur when a pin reads out of range (0-4096)
 class PinReadOutOfRangeException(Exception):
+	pass
+
+## An exception when there is no place to read Pin values from, meaning that the code is not being run on the appropriate hardware
+class NoPinFilesException(Exception):
 	pass
 
 ##The entry point of the program, where we will make a call to setup the various connected sensors, and then begin looping indefinitely to poll those sensors and upload the collected data.

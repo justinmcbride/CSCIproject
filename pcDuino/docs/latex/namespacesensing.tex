@@ -15,14 +15,16 @@ class \hyperlink{classsensing_1_1_sensor_name_exception}{Sensor\-Name\-Exception
 class \hyperlink{classsensing_1_1_no_history_exception}{No\-History\-Exception}
 \begin{DoxyCompactList}\small\item\em An exception that would be raised when a sensor's history list is empty. \end{DoxyCompactList}\item 
 class \hyperlink{classsensing_1_1_pin_read_out_of_range_exception}{Pin\-Read\-Out\-Of\-Range\-Exception}
-\begin{DoxyCompactList}\small\item\em An exception that should occur when a pin reads out of range (0-\/4096) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em An exception that should occur when a pin reads out of range (0-\/4096) \end{DoxyCompactList}\item 
+class \hyperlink{classsensing_1_1_no_pin_files_exception}{No\-Pin\-Files\-Exception}
+\begin{DoxyCompactList}\small\item\em An exception when there is no place to read Pin values from, meaning that the code is not being run on the appropriate hardware. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 def \hyperlink{namespacesensing_a110922c2a80aabf038d162595e137cc4}{delay}
 \begin{DoxyCompactList}\small\item\em Put the program to sleep for a specified number of milliseconds. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_afc4f85f529614a384ee1d04cd5ff80f3}{loop}
-\begin{DoxyCompactList}\small\item\em The Loop This is where the program will spend the majority of its time, looping through indefinitely. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The main loop This is where the program will spend the majority of its time, looping through indefinitely. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_aeae2450fef0f1a9244c1ddc6d96ef4c2}{send\-Data}
 \begin{DoxyCompactList}\small\item\em Here we actually ship off the information to the server. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_a75479ff0f15da4027d590f94160bb43f}{update\-Pin\-Readings}
@@ -86,7 +88,7 @@ A dictionary containing key\-:value pairs of the sensor's name/type and its aver
 )}}\label{namespacesensing_afc4f85f529614a384ee1d04cd5ff80f3}
 
 
-The Loop This is where the program will spend the majority of its time, looping through indefinitely. 
+The main loop This is where the program will spend the majority of its time, looping through indefinitely. 
 
 \hypertarget{namespacesensing_a38d7f8a9b27bbcf471a89725a5e78493}{\index{sensing@{sensing}!main@{main}}
 \index{main@{main}!sensing@{sensing}}
