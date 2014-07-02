@@ -1,6 +1,6 @@
 Remote Sensing App
 ===========
-A miniature internet of things, this project collects temperature and brightness data of remote sensors, stores this data in a NoSQL database, and displays the data to a user via an Angular web app and Android application.
+A miniature internet of things, this project collects temperature and brightness data of remote sensors, stores this data in a NoSQL database, and displays the data to a user via an Angular web app and Android application. A live demo can be found <a href="https://dsp-csci-project.cloud.dreamfactory.com/files/applications/RemoteSensing/app.html">here</a>.
 
 
 CSCI Project
