@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['sensornameexception',['SensorNameException',['../classsensing_1_1_sensor_name_exception.html',1,'sensing']]],
-  ['sensorpinexception',['SensorPinException',['../classsensing_1_1_sensor_pin_exception.html',1,'sensing']]]
+  ['pinmap',['PinMap',['../classpypcduino_1_1pinmap_1_1_pin_map.html',1,'pypcduino::pinmap']]],
+  ['pinreadoutofrangeexception',['PinReadOutOfRangeException',['../classsensing_1_1_pin_read_out_of_range_exception.html',1,'sensing']]]
 ];

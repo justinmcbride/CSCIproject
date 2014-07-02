@@ -21,6 +21,8 @@ def \hyperlink{classsensing_1_1_light_sensor_aab3cbdaa280ccafb57e62e918940cb89}{
 \begin{DoxyCompactList}\small\item\em This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled. \end{DoxyCompactList}\item 
 def \hyperlink{classsensing_1_1_light_sensor_add45ebed39d38396dff214a90c6d814a}{update}
 \begin{DoxyCompactList}\small\item\em The method that will read fom the pin, convert it to a value, and store that values. \end{DoxyCompactList}\item 
+def \hyperlink{classsensing_1_1_light_sensor_a18d4850e295f7154bf3ff99c95c7ada6}{brightness}
+\begin{DoxyCompactList}\small\item\em Because the light sensor does not truly give a readable value, we convert it to a percentage of 100. \end{DoxyCompactList}\item 
 def \hyperlink{classsensing_1_1_light_sensor_aaf57806c085727f8ec922b5baa5c1f3b}{get\-Averageof\-Readings}
 \begin{DoxyCompactList}\small\item\em The sensors are not perfect, so we take 5 readings and average them together before using the value. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -52,6 +54,26 @@ Constructor.
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classsensing_1_1_light_sensor_a18d4850e295f7154bf3ff99c95c7ada6}{\index{sensing\-::\-Light\-Sensor@{sensing\-::\-Light\-Sensor}!brightness@{brightness}}
+\index{brightness@{brightness}!sensing::LightSensor@{sensing\-::\-Light\-Sensor}}
+\subsubsection[{brightness}]{\setlength{\rightskip}{0pt plus 5cm}def sensing.\-Light\-Sensor.\-brightness (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{value}
+\end{DoxyParamCaption}
+)}}\label{classsensing_1_1_light_sensor_a18d4850e295f7154bf3ff99c95c7ada6}
+
+
+Because the light sensor does not truly give a readable value, we convert it to a percentage of 100. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The number between 0 and 4096 to convert to a percentage \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Will return the brightness as a percentage value 
+\end{DoxyReturn}
 \hypertarget{classsensing_1_1_light_sensor_aaf57806c085727f8ec922b5baa5c1f3b}{\index{sensing\-::\-Light\-Sensor@{sensing\-::\-Light\-Sensor}!get\-Averageof\-Readings@{get\-Averageof\-Readings}}
 \index{get\-Averageof\-Readings@{get\-Averageof\-Readings}!sensing::LightSensor@{sensing\-::\-Light\-Sensor}}
 \subsubsection[{get\-Averageof\-Readings}]{\setlength{\rightskip}{0pt plus 5cm}def sensing.\-Light\-Sensor.\-get\-Averageof\-Readings (
@@ -95,4 +117,4 @@ The method that will read fom the pin, convert it to a value, and store that val
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/justin/\-C\-S\-C\-I\-Project/pcduino/\hyperlink{sensing_8py}{sensing.\-py}\end{DoxyCompactItemize}
+\hyperlink{sensing_8py}{sensing.\-py}\end{DoxyCompactItemize}

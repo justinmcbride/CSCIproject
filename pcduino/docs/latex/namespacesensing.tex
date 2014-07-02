@@ -11,7 +11,11 @@ class \hyperlink{classsensing_1_1_light_sensor}{Light\-Sensor}
 class \hyperlink{classsensing_1_1_sensor_pin_exception}{Sensor\-Pin\-Exception}
 \begin{DoxyCompactList}\small\item\em An exception to get thrown when a sensor was set up with an invalid pin location. \end{DoxyCompactList}\item 
 class \hyperlink{classsensing_1_1_sensor_name_exception}{Sensor\-Name\-Exception}
-\begin{DoxyCompactList}\small\item\em An exception to get thrown when a sensor was set up with an invalid name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em An exception to get thrown when a sensor was set up with an invalid name. \end{DoxyCompactList}\item 
+class \hyperlink{classsensing_1_1_no_history_exception}{No\-History\-Exception}
+\begin{DoxyCompactList}\small\item\em An exception that would be raised when a sensor's history list is empty. \end{DoxyCompactList}\item 
+class \hyperlink{classsensing_1_1_pin_read_out_of_range_exception}{Pin\-Read\-Out\-Of\-Range\-Exception}
+\begin{DoxyCompactList}\small\item\em An exception that should occur when a pin reads out of range (0-\/4096) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -111,6 +115,9 @@ This function accepts a dictionary input of the data from the sensors, then inse
 {\em sensor\-Data} & A dictionary of the various sensor types and their values \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true on successful upload, and false otherwise 
+\end{DoxyReturn}
 \hypertarget{namespacesensing_a3b1d400f9ad84146d60ee62f7e82faa0}{\index{sensing@{sensing}!setup\-Sensors@{setup\-Sensors}}
 \index{setup\-Sensors@{setup\-Sensors}!sensing@{sensing}}
 \subsubsection[{setup\-Sensors}]{\setlength{\rightskip}{0pt plus 5cm}def sensing.\-setup\-Sensors (

@@ -117,6 +117,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:add45ebed39d38396dff214a90c6d814a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_light_sensor.html#add45ebed39d38396dff214a90c6d814a">update</a></td></tr>
 <tr class="memdesc:add45ebed39d38396dff214a90c6d814a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The method that will read fom the pin, convert it to a value, and store that values.  <a href="#add45ebed39d38396dff214a90c6d814a">More...</a><br/></td></tr>
 <tr class="separator:add45ebed39d38396dff214a90c6d814a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18d4850e295f7154bf3ff99c95c7ada6"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_light_sensor.html#a18d4850e295f7154bf3ff99c95c7ada6">brightness</a></td></tr>
+<tr class="memdesc:a18d4850e295f7154bf3ff99c95c7ada6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Because the light sensor does not truly give a readable value, we convert it to a percentage of 100.  <a href="#a18d4850e295f7154bf3ff99c95c7ada6">More...</a><br/></td></tr>
+<tr class="separator:a18d4850e295f7154bf3ff99c95c7ada6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf57806c085727f8ec922b5baa5c1f3b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_light_sensor.html#aaf57806c085727f8ec922b5baa5c1f3b">getAverageofReadings</a></td></tr>
 <tr class="memdesc:aaf57806c085727f8ec922b5baa5c1f3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The sensors are not perfect, so we take 5 readings and average them together before using the value.  <a href="#aaf57806c085727f8ec922b5baa5c1f3b">More...</a><br/></td></tr>
 <tr class="separator:aaf57806c085727f8ec922b5baa5c1f3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,6 +169,41 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a18d4850e295f7154bf3ff99c95c7ada6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def sensing.LightSensor.brightness </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Because the light sensor does not truly give a readable value, we convert it to a percentage of 100. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The number between 0 and 4096 to convert to a percentage </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Will return the brightness as a percentage value </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="aaf57806c085727f8ec922b5baa5c1f3b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -223,12 +261,12 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/justin/CSCIProject/pcduino/<a class="el" href="sensing_8py.html">sensing.py</a></li>
+<li><a class="el" href="sensing_8py.html">sensing.py</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 24 2014 17:50:51 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 1 2014 18:03:29 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

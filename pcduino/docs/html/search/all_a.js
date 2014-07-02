@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['output',['OUTPUT',['../namespacepypcduino_1_1gpio.html#a810c8642dc31f28d747c4c845e8a4a80',1,'pypcduino::gpio']]]
+  ['nohistoryexception',['NoHistoryException',['../classsensing_1_1_no_history_exception.html',1,'sensing']]]
 ];

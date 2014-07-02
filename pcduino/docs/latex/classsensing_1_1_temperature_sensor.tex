@@ -24,7 +24,12 @@ def \hyperlink{classsensing_1_1_temperature_sensor_a5129c7aa8fabc66c80b645186518
 def \hyperlink{classsensing_1_1_temperature_sensor_aaf6d138cf7d3155597a11b359fa9afe7}{voltage\-To\-Temp}
 \begin{DoxyCompactList}\small\item\em We need to convert the millivoltage to an actual temperature. \end{DoxyCompactList}\item 
 def \hyperlink{classsensing_1_1_temperature_sensor_adce48cedf1d9fdd706c374ec1217bd94}{update}
-\begin{DoxyCompactList}\small\item\em The method that will read fom the pin, convert it to a value, and store that value. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The method that will read fom the pin, convert it to a value, and store that value 
+\begin{DoxyExceptions}{Exceptions}
+{\em Pin\-Read\-Outof\-Range\-Exception} & Will be thrown when the reading we get is out of the acceptable range. \\
+\hline
+\end{DoxyExceptions}
+\end{DoxyCompactList}\item 
 def \hyperlink{classsensing_1_1_temperature_sensor_a556e30e17858efbb95521dfafe6ee0cc}{get\-Value}
 \begin{DoxyCompactList}\small\item\em This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -104,7 +109,12 @@ Returns a key-\/value pair of the sensor's name in addition to the averaged valu
 )}}\label{classsensing_1_1_temperature_sensor_adce48cedf1d9fdd706c374ec1217bd94}
 
 
-The method that will read fom the pin, convert it to a value, and store that value. 
+The method that will read fom the pin, convert it to a value, and store that value 
+\begin{DoxyExceptions}{Exceptions}
+{\em Pin\-Read\-Outof\-Range\-Exception} & Will be thrown when the reading we get is out of the acceptable range. \\
+\hline
+\end{DoxyExceptions}
+
 
 \hypertarget{classsensing_1_1_temperature_sensor_aaf6d138cf7d3155597a11b359fa9afe7}{\index{sensing\-::\-Temperature\-Sensor@{sensing\-::\-Temperature\-Sensor}!voltage\-To\-Temp@{voltage\-To\-Temp}}
 \index{voltage\-To\-Temp@{voltage\-To\-Temp}!sensing::TemperatureSensor@{sensing\-::\-Temperature\-Sensor}}
@@ -130,4 +140,4 @@ Calculated Fahrenheit temperature from the voltage
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/justin/\-C\-S\-C\-I\-Project/pcduino/\hyperlink{sensing_8py}{sensing.\-py}\end{DoxyCompactItemize}
+\hyperlink{sensing_8py}{sensing.\-py}\end{DoxyCompactItemize}

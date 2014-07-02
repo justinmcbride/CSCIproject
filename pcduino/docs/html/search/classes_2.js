@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pinmap',['PinMap',['../classpypcduino_1_1pinmap_1_1_pin_map.html',1,'pypcduino::pinmap']]]
+  ['nohistoryexception',['NoHistoryException',['../classsensing_1_1_no_history_exception.html',1,'sensing']]]
 ];
