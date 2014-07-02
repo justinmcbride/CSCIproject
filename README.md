@@ -1,13 +1,43 @@
-Remote Sensing App
+About
 ===========
 A miniature internet of things, this project collects temperature and brightness data of remote sensors, stores this data in a NoSQL database, and displays the data to a user via an Angular web app and Android application. While functional, the application is still a work in progress.
 
 A live demo can be found <a href="https://dsp-csci-project.cloud.dreamfactory.com/files/applications/RemoteSensing/app.html">here</a>.
 
+Repository Organization
+===========
+The repository contains three distinct directories:
+AngularApp - contains the code for the web application written in AngularJS and hosted remotely.
+Android - contains the code for our Android application written in Java.
+pcDuino - contains the code for the client program (written in Python) that runs on the pcDuino hardware.
 
-CSCI Project
+Documentation
+===========
+
+pcDuino:
+	The documentation for the pcDuino application was written into the source files, and it is interpretted by Doxygen using
+	the DoxyPy input filter. The already generated documentation lives in the pcDuino/docs/ directory, with index.html being
+	the home page. The documentation can be generated again using the DoxyPy filter with Doxygen, and the included doxyfile.
+Android application:
+	Insert text here.
+AngularJS Web application:
+	Insert text here.
+
+Building code
+===========
+pcDuino:
+	Because the code is Python, the code does not need to be built. It will run on a pcDuino, but abort otherwise.
+AngularJS:
+	This code does not need to be built either. The code can simply be run by viewing the app.html file in a web browser.
+Android application:
+	This code needs to be built through the Eclipse SDK with the Android Developer Toolkit. However, an installable APK file
+	is also included.
+
+
+Purpose
 ===========
 This project was completed for CSCI 3308 - Software Engineering Methods and Tools with the goal of bettering our understanding of development tools related to: Agile, TDD, Static and Dynamic Analysis, Unit Testing, Deployment Environments, Continuous Integration, SQL/NoSQL Databases, Design Patterns, and Intellectual Property.
+
 
 
 Licensing
