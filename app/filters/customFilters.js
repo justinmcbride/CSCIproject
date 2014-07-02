@@ -1,4 +1,5 @@
-angular.module("customFilters", [])
+// This template filter named 'unique' returns all data values of a type selected with dataListControllers.js
+lsangular.module("customFilters", [])
 .filter("unique", function () {
     return function (data, propertyName) {
         if (angular.isArray(data) && angular.isString(propertyName)) {
