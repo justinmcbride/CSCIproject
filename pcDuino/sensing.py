@@ -60,7 +60,7 @@ import time
 import json
 import requests
 from pypcduino import analog_read
-from pcpcduino import InvalidChannelException
+from pypcduino import InvalidChannelException
 
 ## The ID/tag to identify the individual board, passed as a command-line argument.
 boardName = ''
