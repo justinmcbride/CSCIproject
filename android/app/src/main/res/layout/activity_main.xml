@@ -1,0 +1,21 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <!--
+ This file specifies the layout of the android interface
+     It loads a blank "root frame" which is instructed to 
+     match the dimensions of the android's screen. A simple
+     textview box is placed at the top of the screen and a 
+     button is placed next to it which will trigger a database
+     querey and update the textview box
+    -->
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:ignore="MergeRootFrame" />
+
+</FrameLayout>
