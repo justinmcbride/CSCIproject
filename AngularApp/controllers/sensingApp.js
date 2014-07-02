@@ -1,5 +1,5 @@
 ﻿var DSP = "https://dsp-csci-project.cloud.dreamfactory.com/rest/mongodb/sensordata";
-var qString = "?app_name=TEST";
+var qString = "?app_name=TEST&limit=15";
 
 angular.module("sensingApp",["customFilters","kendo.directives"])
 	.controller('sensingCtrl', function($scope, $http){

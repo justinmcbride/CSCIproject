@@ -5,6 +5,9 @@ class TestSensing(unittest.TestCase):
 	def setup(self):
 		pass
 
+	def test_ifpcDuino(self):
+		self.assert
+
 	def test_LightSensor(self):
 		self.assertRaises(sensing.SensorPinException, sensing.LightSensor, pin=6)
 		self.assertRaises(sensing.SensorPinException, sensing.LightSensor, pin=-1)
@@ -58,10 +61,6 @@ class TestSensing(unittest.TestCase):
 		self.assertRaises(sensing.NoHistoryException, obj.getAverageofReadings)
 		obj._history  = [1, 2, 3, 4, 5, 6, 7]
 		self.assertEquals(obj.getAverageofReadings(), 4)
-
-	def test_setupSensors(self):
-		sensing.setupSensors()
-		self.assertEquals(len(sensing.availableSensors), 2)
 
 	def test_TempValues(self):
 		obj = sensing.TemperatureSensor()
