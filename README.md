@@ -15,21 +15,29 @@ Documentation
 ===========
 
 pcDuino:
-	The documentation for the pcDuino application was written into the source files, and it is interpretted by Doxygen using
-	the DoxyPy input filter. The already generated documentation lives in the pcDuino/docs/ directory, with index.html being
-	the home page. The documentation can be generated again using the DoxyPy filter with Doxygen, and the included doxyfile.
+
+	The documentation for the pcDuino application was written into the source files, and it is interpretted by Doxygen using the DoxyPy input filter. The already generated documentation lives in the pcDuino/docs/ directory, with index.html being the home page. The documentation can be generated again using the DoxyPy filter with Doxygen, and the included doxyfile.
+
 Android application:
+
 	Insert text here.
+
 AngularJS Web application:
+
 	Insert text here.
 
 Building code
 ===========
 pcDuino:
+
 	Because the code is Python, the code does not need to be built. It will run on a pcDuino, but abort otherwise.
+
 AngularJS:
+
 	This code does not need to be built either. The code can simply be run by viewing the app.html file in a web browser.
+
 Android application:
+
 	This code needs to be built through the Eclipse SDK with the Android Developer Toolkit. However, an installable APK file
 	is also included.
 
