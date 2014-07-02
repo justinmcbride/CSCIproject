@@ -35,6 +35,14 @@ Building code
 	This code needs to be built through the Eclipse SDK with the Android Developer Toolkit. However, an installable APK file
 	is also included.
 
+Testing
+===========
+* pcDuino:
+	Unit testing is provided. More information at the generated doxygen page.
+* AngularJS:
+	Insert here
+* Android application:
+	Insert here
 
 Purpose
 ===========
