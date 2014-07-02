@@ -1,5 +1,12 @@
+Remote Sensing App
+===========
+A miniature internet of things, this project collects temperature and brightness data of remote sensors, stores this data in a NoSQL database, and displays the data to a user via an Angular web app and Android application.
+
+
 CSCIproject
 ===========
+This project was completed for CSCI 3308 - Software Engineering Methods and Tools with the goal of bettering our understanding of development tools related to: Agile, TDD, Static and Dynamic Analysis, Unit Testing, Deployment Environments, Continuous Integration, SQL/NoSQL Databases, Design Patterns, and Intellectual Property.
+
 
 Licensing
 ===========
