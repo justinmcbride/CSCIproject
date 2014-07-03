@@ -24,9 +24,9 @@ Documentation
 
 * pcDuino:
 	The documentation for the pcDuino application was written into the source files, and it is interpretted by Doxygen using the DoxyPy input filter. The already generated documentation lives in the pcDuino/docs/ directory, with index.html being the home page. A symbolic and relative link to the index page lives in the pcDuino subdirectory named "Documentation" that will direct to the documentation page. To generate the documentation yourself, ensure that DoxyPy is installed, and then invoke
-````
-$ doxygen
-````
+	````
+	$ doxygen
+	````
 	from within the pcDuino directory. It will use the included doxyfile to generate the documentation.
 
 * AngularJS Web application:
@@ -52,7 +52,7 @@ Running the code
 * pcDuino:
 	To run this on a pcDuino, make sure to have the required module pypcduino on the device in the same directory as the sensing.py program. From the command line, simply invoking 
 	````
-	$python sensing.py "Name here"
+	$ python sensing.py "Name here"
 	````
 	with a string in the "Name here" to specify how the board should identify itself to the server will run the code. The code runs in an infinite loop and updates the server occasionally with its data.
 
