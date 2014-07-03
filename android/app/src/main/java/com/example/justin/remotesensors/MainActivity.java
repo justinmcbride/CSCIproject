@@ -15,11 +15,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-///The class contains the functions that are called when the 
-///app first made. The onCreate function is what andrioid 
-///calls when the app is loaded which will renders the layout
-///specified by ActivityMain.xml and then waits.
-
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

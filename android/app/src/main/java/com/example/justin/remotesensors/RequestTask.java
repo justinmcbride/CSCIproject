@@ -20,13 +20,6 @@ import java.io.IOException;
  */
 public class RequestTask extends AsyncTask<String, String, String> {
 
-	
-	/* This function quieries a web server with the GET method and a url string argument
-	 * The apache HTTP request libraries are used to generated a http stream response which
-	 * is converted to a string (i.e. the raw html file the server supplies). The function
-	 * will throw exceptions unlesss the HttpGet response has a HttpStatus equal to 200
-	 */
-	
     private Fragment fragment;
 
     @Override
@@ -48,9 +41,9 @@ public class RequestTask extends AsyncTask<String, String, String> {
                 throw new IOException(statusLine.getReasonPhrase());
             }
         } catch (ClientProtocolException e) {
-          
+            //TODO Handle problems..
         } catch (IOException e) {
-            
+            //TODO Handle problems..
         }
         return responseString;
     }

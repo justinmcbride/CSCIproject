@@ -11,9 +11,6 @@ import android.widget.TextView;
 /**
  * Created by Justin on 6/30/2014.
  */
-
-
-
 public class MainFragment extends Fragment implements View.OnClickListener {
     private Button clicker;
     private TextView text;
@@ -21,12 +18,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     public MainFragment() {
 
     }
-    /*
-     *This function gets called once the initial layout of android is generated. It runs in the background
-     *and waits for the button to be clicked. The button will call a function that sends http request
-     *with the GET method to the REST interface at the url below. The function will return a string with
-     *the raw data from the MongoDB server being hosted and will post that data in the textview text box
-     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
