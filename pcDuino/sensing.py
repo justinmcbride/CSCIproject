@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+'''
+The MIT License (MIT)
+
+Copyright (c) 2014. Reed Anderson, Austin Cerny, Aaron Holt, Justin McBride
+'''
 
 '''\mainpage Remote Sensing
 \section information Information
@@ -103,6 +108,7 @@ def sendData(sensorData):
 	data = {"boardName" : boardName, "sensorData" : sensorData, "date" : datetime.now().isoformat()}
 	try:
 		response = requests.post(apiURI, data=json.dumps(data), headers=headers)
+		print "Successful upload: " + response.text
 		return True
 	except requests.exceptions.ConnectionError:
 		print "Connection error. Skipping current upload"
@@ -289,6 +295,8 @@ def main():
 	args = parser.parse_args()
 	boardName = args.name
 	setupSensors()
+	print "This board will identify itself as " + boardName
+	print "Successful setup... Beginning the main loop..."
 	loop()
 
 if __name__ == "__main__":

@@ -23,7 +23,7 @@ Documentation
 ===========
 
 * pcDuino:
-The documentation for the pcDuino application was written into the source files, and it is interpretted by Doxygen using the DoxyPy input filter. The already generated documentation lives in the pcDuino/docs/ directory, with index.html being the home page. A symbolic and relative link to the index page lives in the pcDuino subdirectory named "Documentation" that will direct to the documentation page. The documentation can be generated again using the DoxyPy filter with Doxygen, and the included doxyfile.
+	The documentation for the pcDuino application was written into the source files, and it is interpretted by Doxygen using the DoxyPy input filter. The already generated documentation lives in the pcDuino/docs/ directory, with index.html being the home page. A symbolic and relative link to the index page lives in the pcDuino subdirectory named "Documentation" that will direct to the documentation page. The documentation can be generated again using the DoxyPy filter with Doxygen, and the included doxyfile.
 
 * AngularJS Web application:
 	In-line comments are included to explain the functionality of this part of the project.

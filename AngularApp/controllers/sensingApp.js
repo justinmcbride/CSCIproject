@@ -1,7 +1,7 @@
 ﻿// Main app controller for 'sensingApp', with 'custom.filter' and 'kendo.directives'
 // Defined variables include dreamfactory API, and required concatenation
 var DSP = "https://dsp-csci-project.cloud.dreamfactory.com/rest/mongodb/sensordata";
-var qString = "?app_name=RemoteSensing&limit=10&order=_id%20desc";
+var qString = "?app_name=RemoteSensing&limit=50&order=_id%20desc";
 
 
 angular.module("sensingApp",["customFilters","kendo.directives"])
