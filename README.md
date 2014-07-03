@@ -1,13 +1,14 @@
 Remote Sensing App
 =======
+
+
 About
 ===========
 A miniature internet of things, this project collects temperature and brightness data of remote sensors, stores this data in a NoSQL database, and displays the data to a user via an Angular web app and Android application. While functional, the application is still a work in progress.
 
 A live demo can be found <a href="https://dsp-csci-project.cloud.dreamfactory.com/files/applications/RemoteSensing/app.html">here</a>.
 
-CSCI Project
-=======
+
 Repository Organization
 ===========
 The repository contains three distinct directories:
@@ -22,7 +23,7 @@ Documentation
 ===========
 
 * pcDuino:
-The documentation for the pcDuino application was written into the source files, and it is interpretted by Doxygen using the DoxyPy input filter. The already generated documentation lives in the pcDuino/docs/ directory, with index.html being the home page. The documentation can be generated again using the DoxyPy filter with Doxygen, and the included doxyfile.
+The documentation for the pcDuino application was written into the source files, and it is interpretted by Doxygen using the DoxyPy input filter. The already generated documentation lives in the pcDuino/docs/ directory, with index.html being the home page. A symbolic and relative link to the index page lives in the pcDuino subdirectory named "Documentation" that will direct to the documentation page. The documentation can be generated again using the DoxyPy filter with Doxygen, and the included doxyfile.
 
 * AngularJS Web application:
 	In-line comments are included to explain the functionality of this part of the project.
@@ -73,8 +74,6 @@ Purpose
 ===========
 This project was completed for CSCI 3308 - Software Engineering Methods and Tools with the goal of bettering our understanding of development tools related to: Agile, TDD, Static and Dynamic Analysis, Unit Testing, Deployment Environments, Continuous Integration, SQL/NoSQL Databases, Design Patterns, and Intellectual Property.
 
-
-=======
 
 Licensing
 ===========
