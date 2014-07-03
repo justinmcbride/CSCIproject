@@ -175,6 +175,12 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classsensing_1_1_sensor_pin_exception.html" title="An exception to get thrown when a sensor was set up with an invalid pin location. ...">SensorPinException</a></td><td>Thrown when the pin specified is not in the valid range </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -194,6 +200,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The reading from the board is not formatted in the correct units, so we first need to find what the millivoltage that the board is reading is. </p>
+<dl class="section return"><dt>Returns</dt><dd>Returns the AD reading as a calculated voltage </dd></dl>
 
 </div>
 </div>
@@ -213,6 +220,12 @@ Public Member Functions</h2></td></tr>
 
 <p>The sensors are not perfect, so we take 5 readings and average them together before using the value. </p>
 <dl class="section return"><dt>Returns</dt><dd>An average of the last 5 calculated readings </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classsensing_1_1_no_history_exception.html" title="An exception that would be raised when a sensor&#39;s history list is empty. ">NoHistoryException</a></td><td>Thrown when there are no readings in the history. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -301,7 +314,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 1 2014 23:45:09 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 2 2014 21:46:27 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

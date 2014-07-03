@@ -20,7 +20,12 @@ def \hyperlink{classsensing_1_1_light_sensor_a906bcf76dc955878006f8f72dc9e3105}{
 def \hyperlink{classsensing_1_1_light_sensor_aab3cbdaa280ccafb57e62e918940cb89}{get\-Value}
 \begin{DoxyCompactList}\small\item\em This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled. \end{DoxyCompactList}\item 
 def \hyperlink{classsensing_1_1_light_sensor_add45ebed39d38396dff214a90c6d814a}{update}
-\begin{DoxyCompactList}\small\item\em The method that will read fom the pin, convert it to a value, and store that values. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The method that will read fom the pin, convert it to a value, and store that values 
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classsensing_1_1_pin_read_out_of_range_exception}{Pin\-Read\-Out\-Of\-Range\-Exception}} & Thrown when the value read from a pin is not in the specified range. \\
+\hline
+\end{DoxyExceptions}
+\end{DoxyCompactList}\item 
 def \hyperlink{classsensing_1_1_light_sensor_a18d4850e295f7154bf3ff99c95c7ada6}{brightness}
 \begin{DoxyCompactList}\small\item\em Because the light sensor does not truly give a readable value, we convert it to a percentage of 100. \end{DoxyCompactList}\item 
 def \hyperlink{classsensing_1_1_light_sensor_aaf57806c085727f8ec922b5baa5c1f3b}{get\-Averageof\-Readings}
@@ -51,6 +56,11 @@ Constructor.
 {\em pin} & Optional. The pin that the sensor connects through. Defaults to pin 2 \\
 \hline
 \end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classsensing_1_1_sensor_pin_exception}{Sensor\-Pin\-Exception}} & Thrown when the pin specified is not in the valid range \\
+\hline
+\end{DoxyExceptions}
 
 
 \subsection{Member Function Documentation}
@@ -88,6 +98,11 @@ The sensors are not perfect, so we take 5 readings and average them together bef
 \begin{DoxyReturn}{Returns}
 An average of the last 5 calculated readings 
 \end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classsensing_1_1_no_history_exception}{No\-History\-Exception}} & Thrown when there are no readings in the history. \\
+\hline
+\end{DoxyExceptions}
 \hypertarget{classsensing_1_1_light_sensor_aab3cbdaa280ccafb57e62e918940cb89}{\index{sensing\-::\-Light\-Sensor@{sensing\-::\-Light\-Sensor}!get\-Value@{get\-Value}}
 \index{get\-Value@{get\-Value}!sensing::LightSensor@{sensing\-::\-Light\-Sensor}}
 \subsubsection[{get\-Value}]{\setlength{\rightskip}{0pt plus 5cm}def sensing.\-Light\-Sensor.\-get\-Value (
@@ -111,7 +126,12 @@ Returns a key-\/value pair of the sensor's name in addition to the averaged valu
 )}}\label{classsensing_1_1_light_sensor_add45ebed39d38396dff214a90c6d814a}
 
 
-The method that will read fom the pin, convert it to a value, and store that values. 
+The method that will read fom the pin, convert it to a value, and store that values 
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classsensing_1_1_pin_read_out_of_range_exception}{Pin\-Read\-Out\-Of\-Range\-Exception}} & Thrown when the value read from a pin is not in the specified range. \\
+\hline
+\end{DoxyExceptions}
+
 
 
 

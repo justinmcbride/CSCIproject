@@ -7,7 +7,6 @@ var searchData=
   ['test_5fgetaveragetemp',['test_getAverageTemp',['../classtest__sensing_1_1_test_sensing.html#a5cd237ffd24b7488f396f51713c1e345',1,'test_sensing::TestSensing']]],
   ['test_5flightsensor',['test_LightSensor',['../classtest__sensing_1_1_test_sensing.html#a0d1b334a31f4dea05ffd10d032069bd6',1,'test_sensing::TestSensing']]],
   ['test_5flightvalues',['test_LightValues',['../classtest__sensing_1_1_test_sensing.html#a5d12277fd768c888e5c289368b1b9db3',1,'test_sensing::TestSensing']]],
-  ['test_5fsetupsensors',['test_setupSensors',['../classtest__sensing_1_1_test_sensing.html#a187e4e99fb6891a9738a3d6adca0f81a',1,'test_sensing::TestSensing']]],
   ['test_5ftempsensor',['test_TempSensor',['../classtest__sensing_1_1_test_sensing.html#ac31ab35d2d8ef9a50d0e87f340334450',1,'test_sensing::TestSensing']]],
   ['test_5ftempvalues',['test_TempValues',['../classtest__sensing_1_1_test_sensing.html#aa693842a90e63302ad1084786b463e4e',1,'test_sensing::TestSensing']]]
 ];

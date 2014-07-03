@@ -120,7 +120,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a110922c2a80aabf038d162595e137cc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Put the program to sleep for a specified number of milliseconds.  <a href="#a110922c2a80aabf038d162595e137cc4">More...</a><br/></td></tr>
 <tr class="separator:a110922c2a80aabf038d162595e137cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc4f85f529614a384ee1d04cd5ff80f3"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#afc4f85f529614a384ee1d04cd5ff80f3">loop</a></td></tr>
-<tr class="memdesc:afc4f85f529614a384ee1d04cd5ff80f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main loop This is where the program will spend the majority of its time, looping through indefinitely.  <a href="#afc4f85f529614a384ee1d04cd5ff80f3">More...</a><br/></td></tr>
+<tr class="memdesc:afc4f85f529614a384ee1d04cd5ff80f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main loop.  <a href="#afc4f85f529614a384ee1d04cd5ff80f3">More...</a><br/></td></tr>
 <tr class="separator:afc4f85f529614a384ee1d04cd5ff80f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeae2450fef0f1a9244c1ddc6d96ef4c2"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesensing.html#aeae2450fef0f1a9244c1ddc6d96ef4c2">sendData</a></td></tr>
 <tr class="memdesc:aeae2450fef0f1a9244c1ddc6d96ef4c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Here we actually ship off the information to the server.  <a href="#aeae2450fef0f1a9244c1ddc6d96ef4c2">More...</a><br/></td></tr>
@@ -209,7 +209,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The main loop This is where the program will spend the majority of its time, looping through indefinitely. </p>
+<p>The main loop. </p>
+<p>This is where the program will spend the majority of its time, looping through indefinitely. </p>
 
 </div>
 </div>
@@ -271,6 +272,12 @@ Variables</h2></td></tr>
 
 <p>Any sensors that are available will be added to a list that gets polled later for their readings. </p>
 <p>Any sensor that is not on that specific board should be commented out from this function to prevent garbage values. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classsensing_1_1_no_pin_files_exception.html" title="An exception when there is no place to read Pin values from, meaning that the code is not being run o...">NoPinFilesException</a></td><td>This exception will be thrown when the files to read pins are not present, most likely indicating that the code is not being run on a pcDuino. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -351,7 +358,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 1 2014 23:45:09 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 2 2014 21:46:27 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

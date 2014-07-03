@@ -115,7 +115,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aab3cbdaa280ccafb57e62e918940cb89"><td class="mdescLeft">&#160;</td><td class="mdescRight">This will return the sensor's name and value as a dictionary to be appended to a list of other sensors to be polled.  <a href="#aab3cbdaa280ccafb57e62e918940cb89">More...</a><br/></td></tr>
 <tr class="separator:aab3cbdaa280ccafb57e62e918940cb89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add45ebed39d38396dff214a90c6d814a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_light_sensor.html#add45ebed39d38396dff214a90c6d814a">update</a></td></tr>
-<tr class="memdesc:add45ebed39d38396dff214a90c6d814a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The method that will read fom the pin, convert it to a value, and store that values.  <a href="#add45ebed39d38396dff214a90c6d814a">More...</a><br/></td></tr>
+<tr class="memdesc:add45ebed39d38396dff214a90c6d814a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The method that will read fom the pin, convert it to a value, and store that values </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classsensing_1_1_pin_read_out_of_range_exception.html" title="An exception that should occur when a pin reads out of range (0-4096) ">PinReadOutOfRangeException</a></td><td>Thrown when the value read from a pin is not in the specified range. </td></tr>
+  </table>
+  </dd>
+</dl>
+ <a href="#add45ebed39d38396dff214a90c6d814a">More...</a><br/></td></tr>
 <tr class="separator:add45ebed39d38396dff214a90c6d814a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18d4850e295f7154bf3ff99c95c7ada6"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsensing_1_1_light_sensor.html#a18d4850e295f7154bf3ff99c95c7ada6">brightness</a></td></tr>
 <tr class="memdesc:a18d4850e295f7154bf3ff99c95c7ada6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Because the light sensor does not truly give a readable value, we convert it to a percentage of 100.  <a href="#a18d4850e295f7154bf3ff99c95c7ada6">More...</a><br/></td></tr>
@@ -162,6 +169,12 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">name</td><td>Optional. The name of the sensor. Defaults to "Temperature" </td></tr>
     <tr><td class="paramname">pin</td><td>Optional. The pin that the sensor connects through. Defaults to pin 2 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classsensing_1_1_sensor_pin_exception.html" title="An exception to get thrown when a sensor was set up with an invalid pin location. ...">SensorPinException</a></td><td>Thrown when the pin specified is not in the valid range </td></tr>
   </table>
   </dd>
 </dl>
@@ -220,6 +233,12 @@ Public Member Functions</h2></td></tr>
 
 <p>The sensors are not perfect, so we take 5 readings and average them together before using the value. </p>
 <dl class="section return"><dt>Returns</dt><dd>An average of the last 5 calculated readings </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classsensing_1_1_no_history_exception.html" title="An exception that would be raised when a sensor&#39;s history list is empty. ">NoHistoryException</a></td><td>Thrown when there are no readings in the history. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -256,7 +275,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The method that will read fom the pin, convert it to a value, and store that values. </p>
+<p>The method that will read fom the pin, convert it to a value, and store that values </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classsensing_1_1_pin_read_out_of_range_exception.html" title="An exception that should occur when a pin reads out of range (0-4096) ">PinReadOutOfRangeException</a></td><td>Thrown when the value read from a pin is not in the specified range. </td></tr>
+  </table>
+  </dd>
+</dl>
+</p>
 
 </div>
 </div>
@@ -266,7 +292,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 1 2014 23:45:09 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jul 2 2014 21:46:27 for Remote Sensing by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

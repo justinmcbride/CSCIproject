@@ -24,7 +24,7 @@ class \hyperlink{classsensing_1_1_no_pin_files_exception}{No\-Pin\-Files\-Except
 def \hyperlink{namespacesensing_a110922c2a80aabf038d162595e137cc4}{delay}
 \begin{DoxyCompactList}\small\item\em Put the program to sleep for a specified number of milliseconds. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_afc4f85f529614a384ee1d04cd5ff80f3}{loop}
-\begin{DoxyCompactList}\small\item\em The main loop This is where the program will spend the majority of its time, looping through indefinitely. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em The main loop. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_aeae2450fef0f1a9244c1ddc6d96ef4c2}{send\-Data}
 \begin{DoxyCompactList}\small\item\em Here we actually ship off the information to the server. \end{DoxyCompactList}\item 
 def \hyperlink{namespacesensing_a75479ff0f15da4027d590f94160bb43f}{update\-Pin\-Readings}
@@ -88,9 +88,9 @@ A dictionary containing key\-:value pairs of the sensor's name/type and its aver
 )}}\label{namespacesensing_afc4f85f529614a384ee1d04cd5ff80f3}
 
 
-The main loop This is where the program will spend the majority of its time, looping through indefinitely. 
+The main loop. 
 
-\hypertarget{namespacesensing_a38d7f8a9b27bbcf471a89725a5e78493}{\index{sensing@{sensing}!main@{main}}
+This is where the program will spend the majority of its time, looping through indefinitely. \hypertarget{namespacesensing_a38d7f8a9b27bbcf471a89725a5e78493}{\index{sensing@{sensing}!main@{main}}
 \index{main@{main}!sensing@{sensing}}
 \subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}def sensing.\-main (
 \begin{DoxyParamCaption}
@@ -131,7 +131,12 @@ Returns true on successful upload, and false otherwise
 
 Any sensors that are available will be added to a list that gets polled later for their readings. 
 
-Any sensor that is not on that specific board should be commented out from this function to prevent garbage values. \hypertarget{namespacesensing_a75479ff0f15da4027d590f94160bb43f}{\index{sensing@{sensing}!update\-Pin\-Readings@{update\-Pin\-Readings}}
+Any sensor that is not on that specific board should be commented out from this function to prevent garbage values. 
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classsensing_1_1_no_pin_files_exception}{No\-Pin\-Files\-Exception}} & This exception will be thrown when the files to read pins are not present, most likely indicating that the code is not being run on a pc\-Duino. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{namespacesensing_a75479ff0f15da4027d590f94160bb43f}{\index{sensing@{sensing}!update\-Pin\-Readings@{update\-Pin\-Readings}}
 \index{update\-Pin\-Readings@{update\-Pin\-Readings}!sensing@{sensing}}
 \subsubsection[{update\-Pin\-Readings}]{\setlength{\rightskip}{0pt plus 5cm}def sensing.\-update\-Pin\-Readings (
 \begin{DoxyParamCaption}
