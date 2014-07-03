@@ -11,9 +11,12 @@ CSCI Project
 Repository Organization
 ===========
 The repository contains three distinct directories:
-AngularApp - contains the code for the web application written in AngularJS and hosted remotely.
-Android - contains the code for our Android application written in Java.
-pcDuino - contains the code for the client program (written in Python) that runs on the pcDuino hardware.
+
+* AngularApp - contains the code for the web application written in AngularJS and hosted remotely.
+
+* Android - contains the code for our Android application written in Java.
+
+* pcDuino - contains the code for the client program (written in Python) that runs on the pcDuino hardware.
 
 Documentation
 ===========
@@ -21,13 +24,13 @@ Documentation
 * pcDuino:
 The documentation for the pcDuino application was written into the source files, and it is interpretted by Doxygen using the DoxyPy input filter. The already generated documentation lives in the pcDuino/docs/ directory, with index.html being the home page. The documentation can be generated again using the DoxyPy filter with Doxygen, and the included doxyfile.
 
-* Android application:
-	Insert text here.
-
 * AngularJS Web application:
-	Insert text here.
+	In-line comments are included to explain the functionality of this part of the project.
 
-Building code
+* Android application:
+	No documentation provided due to the barebones and minimal functionality.
+
+Building the code
 ===========
 * pcDuino:
 	Because the code is Python, the code does not need to be built. It will run on a pcDuino, but abort otherwise.
@@ -39,14 +42,32 @@ Building code
 	This code needs to be built through the Eclipse SDK with the Android Developer Toolkit. However, an installable APK file
 	is also included.
 
+Running the code
+===========
+* pcDuino:
+	To run this on a pcDuino, make sure to have the required module pypcduino on the device in the same directory as the sensing.py program. From the command line, simply invoking 
+	````
+	$python sensing.py "Name here"
+	````
+	with a string in the "Name here" to specify how the board should identify itself to the server will run the code. The code runs in an infinite loop and updates the server occasionally with its data.
+
+* AngularJS:
+	The code can simply be run by viewing the app.html file in a web browser, or by visiting the remotely hosted page linked to above.
+
+* Android application:
+	This code needs to be built through the Eclipse SDK with the Android Developer Toolkit. However, an installable APK file
+	is also included.
+
 Testing
 ===========
 * pcDuino:
 	Unit testing is provided. More information at the generated doxygen page.
+
 * AngularJS:
-	Insert here
+	Manual testing was performed incrementally while creating this application. No unit testing is provided.
+
 * Android application:
-	Insert here
+	No testing was done on this part of the project due to the barebones, minimal functionality.
 
 Purpose
 ===========

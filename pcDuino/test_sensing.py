@@ -5,9 +5,6 @@ class TestSensing(unittest.TestCase):
 	def setup(self):
 		pass
 
-	def test_ifpcDuino(self):
-		self.assert
-
 	def test_LightSensor(self):
 		self.assertRaises(sensing.SensorPinException, sensing.LightSensor, pin=6)
 		self.assertRaises(sensing.SensorPinException, sensing.LightSensor, pin=-1)
