@@ -62,7 +62,7 @@ Running the code
 Testing
 ===========
 * pcDuino:
-	Unit testing is provided. More information at the generated doxygen page.
+	Unit testing is provided. More information at the <a href="pcDuino/docs/html/index.html">generated doxygen page.</a>
 
 * AngularJS:
 	Manual testing was performed incrementally while creating this application. No unit testing is provided.
