@@ -2,14 +2,16 @@
 <html ng-app="sensingApp">
 <head lang="en">
     <title>CSCI 3308 Remote Sensing App</title>
+    <!-- Required scripts for chart, must be in order -->
     <script src="js/jquery.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/kendo.all.min.js"></script>
     <script src="js/angular-kendo.min.js"></script>
 
+    <!-- App specific controllers and filters -->
     <script src="controllers/sensingApp.js"></script>
-    <script src="filters/customFilters.js"></script>
     <script src="controllers/dataListControllers.js"></script>
+    <script src="filters/customFilters.js"></script>
 
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.css" rel="stylesheet" />
@@ -19,17 +21,19 @@
     <div class="navbar navbar-inverse">
         <a class="navbar-brand" href="#">CSCI 3308 Remote Sensing App</a>
     </div>
-    <!-- error message at failed data binding-->
+
+    <!-- div for showing error at data binding failure -->
     <div class="alert alert-danger" ng-show="data.error">
         Error. The sensor data was not loaded. <a href="app.html" class="alert-link">Check here to try again.</a>
     </div>
-    <!-- ng-view /views/chart.html -->
     
+    <!-- div for displaying kendo chart -->
     <div class="border" kendo-chart k-options="chart" k-rebind="chart"></div>
     <br>
 
-    <!-- ng-view /views/table.html -->
+    <!-- div for displaying table -->
     <div class="well" ng-controller="dataListCtrl">
+        <!-- ng-repeat directive for displaying data binding in buttons -->
         <a ng-click="selectData()" class="btn btn-default btn-lg">All Records</a>
         <a ng-repeat="item in data | orderBy:'boardName' | unique:'boardName'" ng-click="selectData(item)" class="btn btn-default btn-lg" ng-class="getDeviceClass(item)">{{item}}</a>
         <br>
@@ -45,7 +49,8 @@
                         <th>Time</th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="item in data | orderBy:'date':true | filter:deviceFilterFn">
+                <!-- ng-repeat directive for displaying data binding in table -->
+                <tbody ng-repeat="item in data | orderBy:'boardName' | filter:deviceFilterFn">
                     <tr>
                         <td class="col-sm-1">{{$index+1}}</td>
                         <td>{{item.boardName}}</td>
@@ -57,8 +62,6 @@
             </table>  
         </div>
     </div>
-    <!-- ng-view /views/chart.html -->
- 
 
 </body>
 
